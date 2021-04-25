@@ -29,7 +29,7 @@ public class Contract{
 
     @ManyToOne
     @JoinColumn(name = "user_id")
-    private User User;
+    private User user;
 
     @ManyToOne
     @JoinColumn(name = "tariff_id", nullable = false)

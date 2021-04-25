@@ -44,7 +44,4 @@ public class Option{
             inverseJoinColumns = @JoinColumn(name = "idOption")
     )
     private Set<Contract> contracts;
-
-//    @OneToMany(mappedBy = "option_id",cascade = CascadeType.ALL)
-//    private Contract contract;
 }

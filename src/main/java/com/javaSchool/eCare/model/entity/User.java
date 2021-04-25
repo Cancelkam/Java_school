@@ -1,5 +1,6 @@
 package com.javaSchool.eCare.model.entity;
 
+import com.javaSchool.eCare.model.entity.enums.Group;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -54,13 +55,13 @@ public class User {
 
     @Column(name = "group")
     @Enumerated(EnumType.STRING)
-    private String group;
+    private Group group;
 
     @Column(name = "is_blocked", columnDefinition = "boolean default false")
     private boolean is_blocked;
 
-    @OneToMany(mappedBy = "user_id",cascade = CascadeType.ALL)
-    private Set<Contract> contract;;
+    @OneToMany(mappedBy = "user",cascade = CascadeType.ALL)
+    private Set<Contract> contract;
 
 
 

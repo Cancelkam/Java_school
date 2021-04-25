@@ -25,8 +25,8 @@ public class Tariff {
     @Column(name = "price", nullable = false)
     private double price;
 
-    @OneToMany(mappedBy = "tariff_id",cascade = CascadeType.ALL)
-    private Set<Contract> contract;
+    @OneToMany(mappedBy = "tariff",cascade = CascadeType.ALL)
+    private Set<Contract> contracts;
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "Tariff_Option",
