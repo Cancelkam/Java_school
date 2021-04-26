@@ -15,7 +15,7 @@ import java.util.Set;
 @Setter
 @NoArgsConstructor
 @EqualsAndHashCode
-public class Option{
+public class Option {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 

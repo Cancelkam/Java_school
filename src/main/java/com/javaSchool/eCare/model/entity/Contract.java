@@ -16,7 +16,7 @@ import java.util.Set;
 @NoArgsConstructor
 @EqualsAndHashCode
 
-public class Contract{
+public class Contract {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -29,7 +29,7 @@ public class Contract{
 
     @ManyToOne
     @JoinColumn(name = "user_id")
-    private User user;
+    private UserEntity userEntity;
 
     @ManyToOne
     @JoinColumn(name = "tariff_id", nullable = false)

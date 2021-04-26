@@ -14,8 +14,11 @@ import java.util.Set;
 
 @Entity
 @Table(name = "user")
-@Getter @Setter @NoArgsConstructor @EqualsAndHashCode
-public class User {
+@Getter
+@Setter
+@NoArgsConstructor
+@EqualsAndHashCode
+public class UserEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "idUser")
@@ -60,15 +63,8 @@ public class User {
     @Column(name = "is_blocked", columnDefinition = "boolean default false")
     private boolean is_blocked;
 
-    @OneToMany(mappedBy = "user",cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private Set<Contract> contract;
-
-
-
-
-
-
-
 
 
 }

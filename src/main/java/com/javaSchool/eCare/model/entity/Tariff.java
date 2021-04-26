@@ -11,7 +11,10 @@ import java.util.Set;
 
 @Entity
 @Table(name = "tariff")
-@Getter @Setter @NoArgsConstructor @EqualsAndHashCode
+@Getter
+@Setter
+@NoArgsConstructor
+@EqualsAndHashCode
 public class Tariff {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,7 +28,7 @@ public class Tariff {
     @Column(name = "price", nullable = false)
     private double price;
 
-    @OneToMany(mappedBy = "tariff",cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "tariff", cascade = CascadeType.ALL)
     private Set<Contract> contracts;
 
     @ManyToMany(fetch = FetchType.EAGER)
