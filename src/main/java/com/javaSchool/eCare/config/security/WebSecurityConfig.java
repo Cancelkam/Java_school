@@ -1,6 +1,6 @@
-package com.javaSchool.eCare.security;
+package com.javaSchool.eCare.config.security;
 
-import com.javaSchool.eCare.config.LoginSuccess;
+import com.javaSchool.eCare.config.handler.LoginSuccess;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;

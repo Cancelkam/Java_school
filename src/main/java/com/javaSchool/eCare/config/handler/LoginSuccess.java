@@ -1,4 +1,4 @@
-package com.javaSchool.eCare.config;
+package com.javaSchool.eCare.config.handler;
 
 import org.springframework.security.core.Authentication;
 import org.springframework.security.web.authentication.SavedRequestAwareAuthenticationSuccessHandler;
