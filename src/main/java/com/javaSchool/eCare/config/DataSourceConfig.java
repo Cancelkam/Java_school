@@ -7,6 +7,7 @@ import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
 import org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
+import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.JpaVendorAdapter;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
@@ -74,4 +75,13 @@ public class DataSourceConfig {
         properties.setProperty("hibernate.show_sql", env.getProperty("hibernate.show_sql"));
         return properties;
     }
+//
+//    @Bean
+//    public LocalSessionFactoryBean sessionFactory() {
+//        LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
+//        sessionFactory.setDataSource(dataSource());
+//        sessionFactory.setPackagesToScan("eCare.model");
+//        sessionFactory.setHibernateProperties((application.properties));
+//        return sessionFactory;
+//    }
 }

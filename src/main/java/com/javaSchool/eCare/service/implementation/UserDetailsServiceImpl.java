@@ -2,6 +2,7 @@ package com.javaSchool.eCare.service.implementation;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
@@ -20,7 +21,7 @@ import java.util.Collections;
 @Slf4j
 @RequiredArgsConstructor
 public class UserDetailsServiceImpl implements UserDetailsService {
-
+    @Autowired
     private final UserRepository userRepository;
 
     @Override

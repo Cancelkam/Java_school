@@ -18,6 +18,7 @@ import java.util.Set;
 @Setter
 @NoArgsConstructor
 @EqualsAndHashCode
+
 public class UserEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -45,8 +46,8 @@ public class UserEntity {
     @Size(min = 1, max = 45)
     private String adress;
 
-    @Column(name = "contract_id", nullable = false)
-    private String contract_id;
+    @Column(name = "contractNumber", nullable = false)
+    private String contractNumber;
 
     @Column(name = "email", unique = true)
     @Size(min = 1, max = 45)
@@ -63,7 +64,7 @@ public class UserEntity {
     @Column(name = "is_blocked", columnDefinition = "boolean default false")
     private boolean is_blocked;
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "userEntity", cascade = CascadeType.ALL)
     private Set<Contract> contract;
 
 

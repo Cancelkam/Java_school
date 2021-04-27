@@ -36,7 +36,7 @@ public class Contract {
     private Tariff tariff;
 
     @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(name = "Contract_AllOptions",
+    @JoinTable(name = "contract-options",
             joinColumns = @JoinColumn(name = "idContract"),
             inverseJoinColumns = @JoinColumn(name = "idOption")
     )
