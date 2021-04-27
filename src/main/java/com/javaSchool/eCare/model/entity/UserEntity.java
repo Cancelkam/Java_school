@@ -5,6 +5,7 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.query.Query;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
