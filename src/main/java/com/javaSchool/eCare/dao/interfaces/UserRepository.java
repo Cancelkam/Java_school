@@ -1,4 +1,4 @@
-package com.javaSchool.eCare.repository;
+package com.javaSchool.eCare.dao.interfaces;
 
 
 import com.javaSchool.eCare.model.entity.UserEntity;
@@ -9,14 +9,14 @@ import java.util.List;
 
 public interface UserRepository {
 
-        List<User> findAll();
+        List<UserEntity> findAll();
 
         /**
          * Find by id user entity.
          * @param idUser the id
          * @return the user entity
          */
-        User findById(int idUser);
+        UserEntity findById(int idUser);
 
         /**
          * Find by email user entity.
@@ -32,7 +32,7 @@ public interface UserRepository {
          * @param user the user entity
          * @return the user entity
          */
-        void add(User user);
+        void add(UserEntity user);
 
         /**
          * Update user entity.
@@ -40,7 +40,7 @@ public interface UserRepository {
          * @param user the user entity
          * @return the user entity
          */
-        void update(User user);
+        void update(UserEntity user);
 
         /**
          * Find group by user email list.
@@ -48,5 +48,5 @@ public interface UserRepository {
          * @param email the user login
          * @return the list
          */
-        Collection<User> findGroupByEmail(String email);
+        Collection<UserEntity> findGroupByEmail(String email);
 }

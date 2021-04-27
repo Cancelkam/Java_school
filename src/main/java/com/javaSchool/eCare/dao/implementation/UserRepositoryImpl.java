@@ -1,5 +1,7 @@
-package com.javaSchool.eCare.repository;
+package com.javaSchool.eCare.dao.implementation;
 
+
+import com.javaSchool.eCare.dao.interfaces.UserRepository;
 import com.javaSchool.eCare.model.entity.UserEntity;
 import org.springframework.stereotype.Repository;
 
@@ -34,7 +36,7 @@ public class UserRepositoryImpl implements UserRepository {
     }
 
     @Override
-    public Collection<UserEntity> findRolesByEmail(String email) {
+    public Collection<UserEntity> findGroupByEmail(String email) {
         return null;
     }
 }
