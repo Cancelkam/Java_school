@@ -12,6 +12,6 @@ public class MainController {
 
         model.addAttribute("example", "example message");
 
-        return "/index";
+        return "index";
     }
 }
