@@ -10,7 +10,7 @@ import javax.validation.constraints.Size;
 import java.util.Set;
 
 @Entity
-@Table(name = "option")
+@Table(name = "alloptions")
 @Getter
 @Setter
 @NoArgsConstructor
@@ -39,7 +39,7 @@ public class Option {
     private Set<Tariff> tariffs;
 
     @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(name = "Contract_AllOptions",
+    @JoinTable(name = "Contract-Options",
             joinColumns = @JoinColumn(name = "idContract"),
             inverseJoinColumns = @JoinColumn(name = "idOption")
     )
