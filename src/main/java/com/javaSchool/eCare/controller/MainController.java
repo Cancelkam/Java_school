@@ -18,13 +18,30 @@ public class MainController {
 
     @GetMapping(value = {"/login"})
     public String loginPage(@RequestParam(required = false) String login, Model model) {
-        model.addAttribute("login" , login);
+        model.addAttribute("login", login);
         return "login";
     }
+
     @GetMapping(value = {"/tariffs"})
     public String tariffPage(@RequestParam(required = false) String tariff, Model model) {
-        model.addAttribute("tariff" , tariff);
+        model.addAttribute("tariff", tariff);
         return "tariffs";
     }
 
+    @GetMapping("/employee")
+    public String employeePage(@RequestParam(required = false) String employee, Model model) {
+        model.addAttribute("employee", employee);
+        return "employee/hello";
+    }
+
+    @GetMapping("/client")
+    public String clientPage(@RequestParam(required = false) String client, Model model) {
+        model.addAttribute("client", client);
+        return "/client/hello";
+    }
+
+    @GetMapping("/403")
+    public String error403() {
+        return "/error/403";
+    }
 }

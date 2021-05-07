@@ -50,6 +50,6 @@ public interface UserRepository {
      * @param email the user login
      * @return the list
      */
-    Collection<UserEntity> findGroupByEmail(String email);
+    Collection<UserEntity> getGroup(String email);
 
 }

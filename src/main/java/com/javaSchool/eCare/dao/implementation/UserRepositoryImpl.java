@@ -54,14 +54,12 @@ public class UserRepositoryImpl implements UserRepository {
         sessionFactory.getCurrentSession().merge(user);
     }
 
-    @Override
-    public List<UserEntity> findGroupByEmail(String email) {
+    public List<UserEntity> getGroup(String email) {
         Query query = (Query) sessionFactory.getCurrentSession()
                 .createQuery("SELECT group FROM UserEntity WHERE UserEntity.email = :email")
                 .setParameter("email", email).getSingleResult();
 
         return query.list();
-
 
     }
 }

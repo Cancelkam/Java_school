@@ -41,10 +41,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         return auth;
     }
 
-    @Bean
-    public AuthenticationSuccessHandler successHandler() {
-        return new LoginSuccess("/");
-    }
+//    @Bean
+//    public AuthenticationSuccessHandler successHandler() {
+//        return new LoginSuccess("/");
+//    }
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
@@ -57,14 +57,18 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/").permitAll()
-                .antMatchers("/routes/{id}/**", "/routes/{id}").hasAnyRole("EMPLOYEE", "CLIENT")
-                .antMatchers("/admin/**").hasRole("ADMIN")
-                .and().formLogin()
-                .loginPage("/login")
+                .antMatchers("/", "/index", "/tariffs").permitAll()
+                .antMatchers("/employee/**").hasRole("EMPLOYEE")
+                .antMatchers("/client/**").hasRole("CLIENT")
+                .and().
+                formLogin()
+                .loginPage("/login.html")
+                .usernameParameter("email")
+                .loginProcessingUrl("/authenticate-user")
                 .permitAll()
-                .successHandler(successHandler())
-                .and().logout()
+                .defaultSuccessUrl("/hello", true)
+                .and().
+                logout()
                 .invalidateHttpSession(true)
                 .permitAll()
                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
