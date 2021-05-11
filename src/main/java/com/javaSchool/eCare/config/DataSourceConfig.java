@@ -2,15 +2,15 @@ package com.javaSchool.eCare.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
 import org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
+import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
-import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.JpaVendorAdapter;
-import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
@@ -20,10 +20,12 @@ import java.util.Properties;
 
 @Configuration
 @EnableTransactionManagement
+@ComponentScan(basePackages = "com.javaSchool.eCare")
 @PropertySource("classpath:application.properties")
 
 public class DataSourceConfig {
-    private final Environment env;
+    private static final String ENTITY_PACKAGE = "com.javaSchool.model.entity";
+    private Environment env;
 
     @Autowired
     public DataSourceConfig(Environment env) {
@@ -40,6 +42,13 @@ public class DataSourceConfig {
         return dataSource;
     }
 
+    @Bean
+    public HibernateTransactionManager transactionManager() {
+        HibernateTransactionManager transactionManager = new HibernateTransactionManager();
+        transactionManager.setSessionFactory(sessionFactory().getObject());
+        return transactionManager;
+    }
+
 //    @Bean
 //    public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
 //        LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
@@ -51,10 +60,10 @@ public class DataSourceConfig {
 //        return em;
 //    }
 
-    @Bean
-    public JpaVendorAdapter vendorAdapter() {
-        return new HibernateJpaVendorAdapter();
-    }
+//    @Bean
+//    public JpaVendorAdapter vendorAdapter() {
+//        return new HibernateJpaVendorAdapter();
+//    }
 
 //    @Bean
 //    public PlatformTransactionManager transactionManager() {
@@ -68,11 +77,12 @@ public class DataSourceConfig {
 //        return new PersistenceExceptionTranslationPostProcessor();
 //    }
 
+    @Bean
     Properties additionalProperties() {
         Properties properties = new Properties();
-//        properties.setProperty("hibernate.hbm2ddl.auto", env.getProperty("hibernate.hbm2ddl.auto"));
+        properties.setProperty("hibernate.hbm2ddl.auto", env.getProperty("hibernate.hbm2ddl.auto"));
         properties.setProperty("hibernate.dialect", env.getProperty("hibernate.dialect"));
-        properties.setProperty("hibernate.show_sql", env.getProperty("hibernate.show_sql"));
+//        properties.setProperty("hibernate.show_sql", env.getProperty("hibernate.show_sql"));
         return properties;
     }
 
@@ -80,8 +90,10 @@ public class DataSourceConfig {
     public LocalSessionFactoryBean sessionFactory() {
         LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
         sessionFactory.setDataSource(dataSource());
-        sessionFactory.setPackagesToScan("eCare.model");
+        sessionFactory.setPackagesToScan(ENTITY_PACKAGE);
         sessionFactory.setHibernateProperties(additionalProperties());
         return sessionFactory;
     }
+
+
 }
