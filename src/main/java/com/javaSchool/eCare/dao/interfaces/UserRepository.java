@@ -2,11 +2,12 @@ package com.javaSchool.eCare.dao.interfaces;
 
 
 import com.javaSchool.eCare.model.entity.UserEntity;
+import org.springframework.stereotype.Repository;
 
 import java.util.Collection;
 import java.util.List;
 
-
+@Repository
 public interface UserRepository {
 
     List<UserEntity> findAll();
