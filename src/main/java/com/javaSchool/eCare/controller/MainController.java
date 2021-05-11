@@ -22,11 +22,11 @@ public class MainController {
         return "login";
     }
 
-    @GetMapping(value = {"/tariffs"})
-    public String tariffPage(@RequestParam(required = false) String tariff, Model model) {
-        model.addAttribute("tariff", tariff);
-        return "tariffs";
-    }
+//    @GetMapping(value = {"/tariffs"})
+//    public String tariffPage(@RequestParam(required = false) String tariff, Model model) {
+//        model.addAttribute("tariff", tariff);
+//        return "tariffs";
+//    }
 
     @GetMapping("/employee")
     public String employeePage(@RequestParam(required = false) String employee, Model model) {
