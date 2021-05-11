@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class TariffService extends GenericServiceImpl<Tariff, TariffRepository>  {
+public class TariffServiceImpl extends GenericServiceImpl<Tariff, TariffRepository>  {
 
     private final TariffRepositoryImpl tariffRepositoryimpl;
 
@@ -25,7 +25,7 @@ public class TariffService extends GenericServiceImpl<Tariff, TariffRepository> 
 
 
     @Autowired
-    public TariffService(TariffRepository tariffRepository, ModelMapper mapper, Class<Tariff> tariffClass, TariffRepositoryImpl tariffRepositoryimpl) {
+    public TariffServiceImpl(TariffRepository tariffRepository, ModelMapper mapper, Class<Tariff> tariffClass, TariffRepositoryImpl tariffRepositoryimpl) {
         super(tariffRepository, mapper, tariffClass);
         this.tariffRepositoryimpl = tariffRepositoryimpl;
     }
