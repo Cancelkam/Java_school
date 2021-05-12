@@ -19,6 +19,6 @@ public class TariffViewForm {
         this.idTariff = tariff.getIdTariff();
         this.title = tariff.getTitle();
         this.price = tariff.getPrice();
-        this.options = tariff.getOptions();
+//        this.options = tariff.getOptions();
     }
 }

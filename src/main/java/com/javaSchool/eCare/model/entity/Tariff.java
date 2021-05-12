@@ -1,9 +1,6 @@
 package com.javaSchool.eCare.model.entity;
 
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.Size;
@@ -31,11 +28,11 @@ public class Tariff {
     @OneToMany(mappedBy = "tariff", cascade = CascadeType.ALL)
     private Set<Contract> contracts;
 
-    @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(name = "Tariff_Option",
-            joinColumns = @JoinColumn(name = "idOption"),
-            inverseJoinColumns = @JoinColumn(name = "idTariff")
-    )
-    private Set<Option> options;
+//    @ManyToMany(fetch = FetchType.EAGER)
+//    @JoinTable(name = "Tariff_Option",
+//            joinColumns = @JoinColumn(name = "idOption"),
+//            inverseJoinColumns = @JoinColumn(name = "idTariff")
+//    )
+//    private Set<Option> options;
 
 }
