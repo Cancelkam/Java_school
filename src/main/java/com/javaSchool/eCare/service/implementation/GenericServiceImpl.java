@@ -12,7 +12,7 @@ import java.util.List;
 
 @Service
 @AllArgsConstructor
-public abstract class GenericServiceImpl<Entity, DAO extends GenericRepository<Entity>> implements GenericService<Entity> {
+public class GenericServiceImpl<Entity, DAO extends GenericRepository<Entity>> implements GenericService<Entity> {
 
     @Getter(value = AccessLevel.PROTECTED)
     @Setter(value = AccessLevel.PROTECTED)
