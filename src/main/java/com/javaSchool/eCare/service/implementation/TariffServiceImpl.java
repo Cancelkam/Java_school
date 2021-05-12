@@ -18,15 +18,17 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.Collection;
 import java.util.List;
 
-@Service("tariffService")
-@RequiredArgsConstructor
+@Service
 public class TariffServiceImpl implements TariffService {
 
-    private final TariffRepositoryImpl tariffRepositoryimpl;
     private final TariffRepository tariffRepository;
+    @Autowired
+    public TariffServiceImpl(TariffRepository tariffRepository) {
+        this.tariffRepository = tariffRepository;
+    }
 
 
-    @Override
+/*    @Override
     @Transactional
     public void createEntity(Tariff tariff) {
 
@@ -48,7 +50,7 @@ public class TariffServiceImpl implements TariffService {
     @Transactional
     public void deleteEntity(Tariff tariff) {
 
-    }
+    }*/
     @Override
     @Transactional
     public List<Tariff> findAll() {

@@ -6,9 +6,9 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.lang.reflect.ParameterizedType;
 import java.util.List;
 
-@Repository
 public class GenericRepositoryImpl<Entity,Integer> implements GenericRepository<Entity,Integer>{
 
 
@@ -21,8 +21,9 @@ public class GenericRepositoryImpl<Entity,Integer> implements GenericRepository<
         this.session = sessionFactory;
     }
 
-    public GenericRepositoryImpl(Class<Entity> clazz) {
-        this.entityClass = clazz;
+    public GenericRepositoryImpl() {
+        entityClass = (Class<Entity>) ((ParameterizedType) getClass().getGenericSuperclass())
+                .getActualTypeArguments()[0];
     }
 
     @Override

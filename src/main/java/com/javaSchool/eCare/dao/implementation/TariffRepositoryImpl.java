@@ -11,9 +11,6 @@ import java.util.List;
 
 @Repository
 public class TariffRepositoryImpl extends GenericRepositoryImpl<Tariff,Integer> implements TariffRepository {
-    public TariffRepositoryImpl(Class<Tariff> clazz) {
-        super(clazz);
-    }
 
 //    private SessionFactory sessionFactory;
 //

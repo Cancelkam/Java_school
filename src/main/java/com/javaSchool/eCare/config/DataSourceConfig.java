@@ -24,7 +24,7 @@ import java.util.Properties;
 @PropertySource("classpath:application.properties")
 
 public class DataSourceConfig {
-    private static final String ENTITY_PACKAGE = "com.javaSchool.model.entity";
+    private static final String ENTITY_PACKAGE = "com.javaSchool.eCare.model.entity";
     private Environment env;
 
     @Autowired

@@ -1,5 +1,6 @@
 package com.javaSchool.eCare.controller;
 
+import com.javaSchool.eCare.service.api.TariffService;
 import com.javaSchool.eCare.service.implementation.TariffServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,11 +15,11 @@ import java.util.List;
 @Controller
 public class TariffsController {
 
-    private final TariffServiceImpl tariffServiceImpl;
+    private final TariffService tariffService;
 
     @Autowired
-    public TariffsController(TariffServiceImpl tariffServiceImpl) {
-        this.tariffServiceImpl = tariffServiceImpl;
+    public TariffsController(TariffService tariffService) {
+        this.tariffService = tariffService;
     }
 
     @GetMapping(value = {"/index"})
@@ -30,7 +31,7 @@ public class TariffsController {
 
     @RequestMapping(value = "/tariffs", method = RequestMethod.GET)
     public String getTariffs(@RequestParam(required = false) List tariff, Model model) {
-        tariff = tariffServiceImpl.findAll();
+        tariff = tariffService.findAll();
         model.addAttribute("tariffs", tariff);
         return "tariffs";
 
