@@ -4,33 +4,78 @@ package com.javaSchool.eCare.service.implementation;
 import com.javaSchool.eCare.dao.implementation.TariffRepositoryImpl;
 
 import com.javaSchool.eCare.dao.interfaces.TariffRepository;
+import com.javaSchool.eCare.model.dto.Tariff.TariffViewForm;
+import com.javaSchool.eCare.model.entity.Option;
 import com.javaSchool.eCare.model.entity.Tariff;
+import com.javaSchool.eCare.service.api.TariffService;
+import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 
+import java.util.Collection;
 import java.util.List;
 
-@Service
-public class TariffServiceImpl extends GenericServiceImpl<Tariff, TariffRepository>  {
+@Service("tariffService")
+@RequiredArgsConstructor
+public class TariffServiceImpl implements TariffService {
 
     private final TariffRepositoryImpl tariffRepositoryimpl;
-
-//
-////    public TariffService(TariffRepositoryImpl tariffRepositoryimpl) {
-////
-////        this.tariffRepositoryimpl = tariffRepositoryimpl;
-////    }
+    private final TariffRepository tariffRepository;
 
 
-    @Autowired
-    public TariffServiceImpl(TariffRepository tariffRepository, ModelMapper mapper, Class<Tariff> tariffClass, TariffRepositoryImpl tariffRepositoryimpl) {
-        super(tariffRepository, mapper, tariffClass);
-        this.tariffRepositoryimpl = tariffRepositoryimpl;
+    @Override
+    @Transactional
+    public void createEntity(Tariff tariff) {
+
     }
 
+    @Override
+    @Transactional
+    public Tariff getEntityById(Tariff id) {
+        return null;
+    }
+
+    @Override
+    @Transactional
+    public void updateEntity(Tariff tariff) {
+
+    }
+
+    @Override
+    @Transactional
+    public void deleteEntity(Tariff tariff) {
+
+    }
+    @Override
+    @Transactional
     public List<Tariff> findAll() {
-        return tariffRepositoryimpl.findAll();
+        return tariffRepository.findAll();
+    }
+
+    @Override
+    @Transactional
+    public List<TariffViewForm> getTariffViewList(Collection<Tariff> tariffs) {
+        return null;
+    }
+
+    @Override
+    @Transactional
+    public void updateTariff(Tariff tariff) {
+
+    }
+
+    @Override
+    @Transactional
+    public void addOption(Tariff tariff, Option option) {
+
+    }
+
+    @Override
+    @Transactional
+    public void deleteOption(Tariff tariff, Option option) {
+
     }
 }

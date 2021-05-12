@@ -4,26 +4,10 @@ import com.javaSchool.eCare.model.entity.Tariff;
 import com.javaSchool.eCare.service.api.GenericService;
 import org.springframework.stereotype.Repository;
 
+import javax.persistence.criteria.CriteriaBuilder;
 import java.util.List;
 
 
-public interface TariffRepository extends GenericRepository<Tariff> {
+public interface TariffRepository extends GenericRepository<Tariff, Integer> {
 
-    List <Tariff> findAll();
-
-    /**
-     * Add user entity.
-     *
-     * @param tariff the Tariff
-     * @return the user entity
-     */
-    void add(Tariff tariff);
-
-    /**
-     * Add user entity.
-     *
-     * @param tariff the Tariff
-     * @return the tariff
-     */
-    void update(Tariff tariff);
 }

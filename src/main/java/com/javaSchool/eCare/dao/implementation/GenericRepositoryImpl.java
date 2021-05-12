@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public class GenericRepositoryImpl<Entity> implements GenericRepository{
+public class GenericRepositoryImpl<Entity,Integer> implements GenericRepository<Entity,Integer>{
 
 
     private final Class<Entity> entityClass;

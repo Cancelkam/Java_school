@@ -10,30 +10,37 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public class TariffRepositoryImpl implements TariffRepository {
-
-    private SessionFactory sessionFactory;
-
-    @Autowired
-    public void setSessionFactory(SessionFactory sessionFactory) {
-        this.sessionFactory = sessionFactory;
+public class TariffRepositoryImpl extends GenericRepositoryImpl<Tariff,Integer> implements TariffRepository {
+    public TariffRepositoryImpl(Class<Tariff> clazz) {
+        super(clazz);
     }
 
-    @Override
-    @SuppressWarnings("unchecked")
-    public List<Tariff> findAll() {
-        return sessionFactory.getCurrentSession()
-                .createQuery("FROM Tariff ").list();
-    }
-
-    @Override
-    public void add(Tariff tariff) {
-        sessionFactory.getCurrentSession().save(tariff);
-    }
-
-    @Override
-    public void update(Tariff tariff) {
-        sessionFactory.getCurrentSession().merge(tariff);
-    }
+//    private SessionFactory sessionFactory;
+//
+//    public TariffRepositoryImpl(Class<Tariff> clazz) {
+//        super(clazz);
+//    }
+//
+//    @Autowired
+//    public void setSessionFactory(SessionFactory sessionFactory) {
+//        this.sessionFactory = sessionFactory;
+//    }
+//
+//    @Override
+//    @SuppressWarnings("unchecked")
+//    public List<Tariff> findAll() {
+//        return sessionFactory.getCurrentSession()
+//                .createQuery("FROM Tariff ").list();
+//    }
+//
+//    @Override
+//    public void add(Tariff tariff) {
+//        sessionFactory.getCurrentSession().save(tariff);
+//    }
+//
+//    @Override
+//    public void update(Tariff tariff) {
+//        sessionFactory.getCurrentSession().merge(tariff);
+//    }
 
 }
