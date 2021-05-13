@@ -1,14 +1,12 @@
 package com.javaSchool.eCare.controller;
 
+import com.javaSchool.eCare.model.dto.Tariff.TariffViewForm;
+import com.javaSchool.eCare.model.entity.Tariff;
 import com.javaSchool.eCare.service.api.TariffService;
-import com.javaSchool.eCare.service.implementation.TariffServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -29,12 +27,21 @@ public class TariffsController {
     }
 
 
-    @RequestMapping(value = "/tariffs", method = RequestMethod.GET)
-    public String getTariffs(@RequestParam(required = false) List tariff, Model model) {
-        tariff = tariffService.findAll();
-        model.addAttribute("tariffs", tariff);
+    @GetMapping(value = "/tariffs")
+    public String getTariffs(@RequestParam(required = false) List tariffs, Model model) {
+        tariffs = tariffService.findAll();
+        model.addAttribute("tariffs", tariffs);
         return "tariffs";
+    }
 
+    @ModelAttribute("tariff")
+    public TariffViewForm tariffViewForm() {
+        return new TariffViewForm();
+    }
+
+    @ModelAttribute("tariffs")
+    public List<Tariff> tariffViewForms() {
+        return tariffService.findAll();
     }
 
 }
