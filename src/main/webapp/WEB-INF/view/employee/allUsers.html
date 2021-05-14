@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<header class="p-3 bg-dark text-white">
+  <div class="container">
+    <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+      <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
+        <svg class="bi me-2" width="40" height="32">
+          <use xlink:href="#bootstrap"/>
+        </svg>
+      </a>
+      <div class="text-end">
+        <a  href="/logout" class="btn btn-outline-light me-2">Logout</a>
+        <a  href="/Home" class="btn btn-outline-light me-2">Home</a>
+        <!--                <button type="button" class="btn btn-warning">Sign-up</button>-->
+      </div>
+    </div>
+  </div>
+</header>
+<main>
+  <form th:action="@{/allUsers}" th:object="${users}" method="post">
+    <table class="table table-hover">
+      <thead>
+      <tr>
+        <!--        <th scope="col">#</th>-->
+        <th scope="col">Fullname</th>
+        <th scope="col">Birth</th>
+        <th scope="col">Passport</th>
+        <th scope="col">Address</th>
+        <th scope="col">email</th>
+        <th scope="col">status</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr th:each="users: ${user}">
+        <!--/*@thymesVar id="title" type=""*/-->
+        <td th:text="${user.fullname}">N/A</td>
+        <td th:text="${user.birth}">N/A</td>
+        <td th:text="${user.passport}">N/A</td>
+        <td th:text="${user.adress}">N/A</td>
+        <td th:text="${user.email}">N/A</td>
+        <td th:text="${user.status}">N/A</td>
+
+      </tr>
+      </tbody>
+    </table>
+  </form>
+</main>
+</body>
+</html>
