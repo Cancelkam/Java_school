@@ -1,4 +1,4 @@
-package com.javaSchool.eCare.model.dto.User;
+package com.javaSchool.eCare.model.dto.user;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;

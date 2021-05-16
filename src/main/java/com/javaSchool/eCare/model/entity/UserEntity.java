@@ -1,6 +1,7 @@
 package com.javaSchool.eCare.model.entity;
 
-import com.javaSchool.eCare.model.entity.enums.Group;
+import com.javaSchool.eCare.model.entity.enums.Role;
+import com.javaSchool.eCare.model.entity.enums.Status;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -46,7 +47,7 @@ public class UserEntity {
     @Size(min = 1, max = 45)
     private String adress;
 
-    @Column(name = "contractNumber", nullable = false)
+    @Column(name = "contract_id", nullable = false)
     private String contractNumber;
 
     @Column(name = "email", unique = true)
@@ -57,15 +58,16 @@ public class UserEntity {
     @Size(min = 1, max = 45)
     private String password;
 
-    @Column(name = "group")
+    @Column(name = "role")
     @Enumerated(EnumType.STRING)
-    private Group group;
+    private Role role;
 
-    @Column(name = "is_blocked", columnDefinition = "boolean default false")
-    private boolean is_blocked;
+    @Enumerated(value = EnumType.STRING)
+    @Column(name = "status")
+    @Basic
+    private Status status;
+
 
     @OneToMany(mappedBy = "userEntity", cascade = CascadeType.ALL)
     private Set<Contract> contract;
-
-
 }

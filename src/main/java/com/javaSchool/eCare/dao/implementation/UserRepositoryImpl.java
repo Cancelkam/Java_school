@@ -38,7 +38,6 @@ public class UserRepositoryImpl implements UserRepository {
     }
 
     @Override
-    @SuppressWarnings("unchecked")
     public List<UserEntity> findAll() {
         return sessionFactory.getCurrentSession()
                 .createQuery("FROM UserEntity").list();
@@ -54,9 +53,9 @@ public class UserRepositoryImpl implements UserRepository {
         sessionFactory.getCurrentSession().merge(user);
     }
 
-    public List<UserEntity> getGroup(String email) {
+    public List<UserEntity> getRole(String email) {
         Query query = (Query) sessionFactory.getCurrentSession()
-                .createQuery("SELECT group FROM UserEntity WHERE UserEntity.email = :email")
+                .createQuery("SELECT role FROM UserEntity WHERE UserEntity.email = :email")
                 .setParameter("email", email).getSingleResult();
 
         return query.list();

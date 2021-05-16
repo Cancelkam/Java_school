@@ -46,7 +46,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
     private Collection<? extends GrantedAuthority> mapRolesToAuthorities(UserEntity userEntity) {
 
-        return Collections.singletonList(new SimpleGrantedAuthority(userEntity.getGroup().name()));
+        return Collections.singletonList(new SimpleGrantedAuthority(userEntity.getRole().name()));
 
     }
 
