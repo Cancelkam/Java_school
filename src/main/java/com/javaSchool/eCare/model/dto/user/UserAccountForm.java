@@ -37,7 +37,7 @@ public class UserAccountForm {
         this.date = dateFormat.format(user.getBirth());
         this.passport = user.getPassport();
         this.contracts = user.getContract();
-        this.address = user.getAdress();
+        this.address = user.getAddress();
     }
 
 }

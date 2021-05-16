@@ -6,10 +6,13 @@ import com.javaSchool.eCare.service.api.UserService;
 import com.javaSchool.eCare.service.implementation.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -22,23 +25,25 @@ public class UserController {
         this.userService = userService;
     }
 
-    @GetMapping(value = "/Users")
-    public String getUsers(ModelMap model) {
-        model.addAttribute("users", userService.findAll());
-        return "allUsers";
+    @ModelAttribute("user")
+    public UserAccountForm userAccountForm() {
+        return new UserAccountForm();
     }
 
-    @ModelAttribute("user")
-    public UserAccountForm userAccountForm() {return new UserAccountForm(); }
+    @GetMapping(value = "/allUsers")
+    public String getUsers(Model model) {
+        List<UserEntity> users = userService.findAll();
+        List<UserAccountForm> usersDto = new ArrayList<UserAccountForm>();
+        for (UserEntity user : users) {
+            usersDto.add(new UserAccountForm(user));
+        }
+        model.addAttribute("users", usersDto);
+        return "employee/allUsers";
+    }
 
-//    @ModelAttribute("users")
-//    public List<UserEntity> userAccountForm(){return userService.findAll();}
 
 
-//@GetMapping(value = "/client/account")
-//    public String getName(ModelMap model){
-//model.addAttribute("users",userService.)
-//}
-
+//    @ModelAttribute("allUsers")
+//    public List<UserEntity> userAccountForms(){return userService.findAll();}
 
 }

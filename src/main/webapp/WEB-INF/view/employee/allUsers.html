@@ -1,8 +1,26 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>allUsers</title>
+  <link th:href="@{resources/css/bootstrap.min.css}" rel="stylesheet">
+  <link th:href="@{resources/css/index.css}" rel="stylesheet">
+
+  <style>
+    .bd-placeholder-img {
+      font-size: 1.125rem;
+      text-anchor: middle;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      user-select: none;
+    }
+
+    @media (min-width: 768px) {
+      .bd-placeholder-img-lg {
+        font-size: 3.5rem;
+      }
+    }
+  </style>
 </head>
 <body>
 <header class="p-3 bg-dark text-white">
@@ -36,12 +54,12 @@
       </tr>
       </thead>
       <tbody>
-      <tr th:each="users: ${user}">
+      <tr th:each="user: ${users}">
         <!--/*@thymesVar id="title" type=""*/-->
         <td th:text="${user.fullname}">N/A</td>
-        <td th:text="${user.birth}">N/A</td>
+        <td th:text="${user.date}">N/A</td>
         <td th:text="${user.passport}">N/A</td>
-        <td th:text="${user.adress}">N/A</td>
+        <td th:text="${user.address}">N/A</td>
         <td th:text="${user.email}">N/A</td>
         <td th:text="${user.status}">N/A</td>
 

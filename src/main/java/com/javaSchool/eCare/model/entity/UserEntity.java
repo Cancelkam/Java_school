@@ -43,9 +43,9 @@ public class UserEntity {
     @Size(min = 1, max = 45)
     private String passport;
 
-    @Column(name = "adress", nullable = false)
+    @Column(name = "address", nullable = false)
     @Size(min = 1, max = 45)
-    private String adress;
+    private String address;
 
     @Column(name = "contract_id", nullable = false)
     private String contractNumber;
