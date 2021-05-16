@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -20,6 +21,11 @@ public class TariffsController {
         this.tariffService = tariffService;
     }
 
+    @ModelAttribute("tariff")
+    public TariffViewForm tariffViewForm() {
+        return new TariffViewForm();
+    }
+
     @GetMapping(value = {"/index"})
     public String loginPage(@RequestParam(required = false) String index, Model model) {
         model.addAttribute("index", index);
@@ -28,20 +34,21 @@ public class TariffsController {
 
 
     @GetMapping(value = "/tariffs")
-    public String getTariffs(@RequestParam(required = false) List tariffs, Model model) {
-        tariffs = tariffService.findAll();
-        model.addAttribute("tariffs", tariffs);
+    public String getTariffs(Model model) {
+        List<Tariff> tariffs = tariffService.findAll();
+        List<TariffViewForm> tariffDto = new ArrayList<TariffViewForm>();
+        for (Tariff tariff : tariffs) {
+            tariffDto.add(new TariffViewForm(tariff));
+        }
+        model.addAttribute("tariffs", tariffDto);
         return "tariffs";
     }
 
-    @ModelAttribute("tariff")
-    public TariffViewForm tariffViewForm() {
-        return new TariffViewForm();
-    }
 
-    @ModelAttribute("tariffs")
-    public List<Tariff> tariffViewForms() {
-        return tariffService.findAll();
-    }
+//
+//    @ModelAttribute("tariffs")
+//    public List<Tariff> tariffViewForms() {
+//        return tariffService.findAll();
+//    }
 
 }
