@@ -1,6 +1,6 @@
 package com.javaSchool.eCare.model.entity.enums;
 
-public enum Group {
+public enum Role {
     EMPLOYEE,
     CLIENT
 }

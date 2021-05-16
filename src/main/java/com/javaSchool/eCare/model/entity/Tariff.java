@@ -28,11 +28,7 @@ public class Tariff {
     @OneToMany(mappedBy = "tariff", cascade = CascadeType.ALL)
     private Set<Contract> contracts;
 
-    @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(name = "Tariff_Option",
-            joinColumns = @JoinColumn(name = "idOption"),
-            inverseJoinColumns = @JoinColumn(name = "idTariff")
-    )
+    @ManyToMany(mappedBy = "tariffs")
     private Set<Option> options;
 
 }
