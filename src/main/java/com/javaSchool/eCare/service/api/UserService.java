@@ -6,5 +6,7 @@ import java.util.List;
 
 public interface UserService{
     public List<UserEntity> findAll();
-//    public List<UserAccountForm> userAccListByCond(String emailOrNumber);
+
+    public UserEntity getUserByNumber(String number);
+
 }

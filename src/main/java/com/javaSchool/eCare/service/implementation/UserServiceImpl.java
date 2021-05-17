@@ -26,5 +26,11 @@ public class UserServiceImpl implements UserService {
     public List<UserEntity> findAll() {
         return userRepository.findAll();
     }
+
+    @Override
+    @Transactional
+        public UserEntity getUserByNumber(String number) {
+        return userRepository.getUserByNumber(number);
+    }
 }
 

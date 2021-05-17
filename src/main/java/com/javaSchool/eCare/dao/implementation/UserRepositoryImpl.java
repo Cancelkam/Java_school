@@ -30,10 +30,10 @@ public class UserRepositoryImpl implements UserRepository {
     }
 
     @Override
-    public UserEntity findByContractNumber(String contractNumber) {
+    public UserEntity getUserByNumber(String contractNumber) {
         return (UserEntity) sessionFactory.getCurrentSession()
-                .createQuery("FROM UserEntity AS u WHERE u.contractNumber = :contractNumber")
-                .setParameter("contractNumber", contractNumber).uniqueResult();
+                .createQuery("SELECT c.userEntity FROM Contract c WHERE c.number=:number")
+                .setParameter("number", contractNumber).uniqueResult();
 
     }
 

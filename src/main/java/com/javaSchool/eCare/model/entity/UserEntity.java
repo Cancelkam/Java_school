@@ -47,8 +47,8 @@ public class UserEntity {
     @Size(min = 1, max = 45)
     private String address;
 
-    @Column(name = "contract_id", nullable = false)
-    private String contractNumber;
+//    @Column(name = "contract_id", nullable = false)
+//    private String contractNumber;
 
     @Column(name = "email", unique = true)
     @Size(min = 1, max = 45)

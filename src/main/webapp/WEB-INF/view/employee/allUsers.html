@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:form="http://www.w3.org/1999/html" lang="en">
 <head>
     <meta charset="UTF-8">
     <title>allUsers</title>
@@ -36,6 +36,17 @@
         <a  href="/Home" class="btn btn-outline-light me-2">Home</a>
         <!--                <button type="button" class="btn btn-warning">Sign-up</button>-->
       </div>
+<!--      <form method="post" th:action="@{/allUsers}">-->
+<!--        <form>-->
+<!--          <input type="text" name="search" id="search" th:value="${search}"/>-->
+<!--        </form>-->
+
+<!--      </form>-->
+<!--      <form:form class="form-inline" method="post" action="/administration/users" modelAttribute="emailOrContract">-->
+<!--        <form:input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"-->
+<!--                    value="" path="condition"></form:input>-->
+<!--        <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Search</button>-->
+<!--      </form:form>-->
     </div>
   </div>
 </header>
@@ -62,6 +73,7 @@
         <td th:text="${user.address}">N/A</td>
         <td th:text="${user.email}">N/A</td>
         <td th:text="${user.status}">N/A</td>
+<!--        <td th:text="${user.contracts[0].number}">N/A</td>-->
 
       </tr>
       </tbody>

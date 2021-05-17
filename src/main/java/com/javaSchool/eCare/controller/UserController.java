@@ -1,6 +1,7 @@
 package com.javaSchool.eCare.controller;
 
 import com.javaSchool.eCare.model.dto.user.UserAccountForm;
+import com.javaSchool.eCare.model.entity.Contract;
 import com.javaSchool.eCare.model.entity.UserEntity;
 import com.javaSchool.eCare.service.api.UserService;
 import com.javaSchool.eCare.service.implementation.UserServiceImpl;
@@ -8,9 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -41,6 +40,17 @@ public class UserController {
         return "employee/allUsers";
     }
 
+//    @RequestMapping(value = "/allUsers/{number}", method = RequestMethod.GET)
+//    public String getUserListByContract(@PathVariable String number, Model model) {
+//        model.addAttribute("search", userService.getUserByNumber(number));
+//        return "employee/allUsers";
+//    }
+
+//    @RequestMapping(value = "/allUsers/{number}", method = RequestMethod.GET)
+//    public String getUserListByEmail(@PathVariable String email, Model model) {
+//        model.addAttribute("search", userService.getUserByNumber(email));
+//        return "employee/allUsers";
+//    }
 
 
 //    @ModelAttribute("allUsers")
