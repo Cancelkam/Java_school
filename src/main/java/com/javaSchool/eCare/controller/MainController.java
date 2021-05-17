@@ -28,13 +28,13 @@ public class MainController {
 //        return "tariffs";
 //    }
 
-    @GetMapping("/employee")
-    public String employeePage(@RequestParam(required = false) String employee, Model model) {
-        model.addAttribute("employee", employee);
+    @GetMapping("employee/hello")
+    public String employeePage(Model model) {
+        model.addAttribute("employee");
         return "employee/hello";
     }
 
-    @GetMapping("/client")
+    @GetMapping("client/hello")
     public String clientPage(@RequestParam(required = false) String client, Model model) {
         model.addAttribute("client", client);
         return "/client/hello";
