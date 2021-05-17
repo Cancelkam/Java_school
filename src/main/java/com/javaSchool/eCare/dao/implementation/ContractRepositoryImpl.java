@@ -26,13 +26,13 @@ public class ContractRepositoryImpl implements ContractRepository {
                 .createQuery("FROM Contract").list();
     }
 
-    @Override
-    public void add(Contract contract) {
-        sessionFactory.getCurrentSession().save(contract);
-    }
-
-    @Override
-    public void update(Contract contract) {
-        sessionFactory.getCurrentSession().merge(contract);
-    }
+//    @Override
+//    public void add(Contract contract) {
+//        sessionFactory.getCurrentSession().save(contract);
+//    }
+//
+//    @Override
+//    public void update(Contract contract) {
+//        sessionFactory.getCurrentSession().merge(contract);
+//    }
 }

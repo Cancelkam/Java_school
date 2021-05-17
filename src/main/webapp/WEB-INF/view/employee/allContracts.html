@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <title>allContracts</title>
+    <link th:href="@{resources/css/bootstrap.min.css}" rel="stylesheet">
+    <link th:href="@{resources/css/index.css}" rel="stylesheet">
+    <script th:src="@{https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js}"></script>
+    <style>
+        .bd-placeholder-img {
+            font-size: 1.125rem;
+            text-anchor: middle;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            user-select: none;
+        }
+
+        @media (min-width: 768px) {
+            .bd-placeholder-img-lg {
+                font-size: 3.5rem;
+            }
+        }
+    </style>
+
+</head>
+<body>
+
+<header class="p-3 bg-dark text-white">
+    <div class="container">
+        <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+            <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
+                <svg class="bi me-2" width="40" height="32">
+                    <use xlink:href="#bootstrap"/>
+                </svg>
+            </a>
+            <div class="text-end">
+                <a href="/index" class="btn btn-outline-light me-2">Home</a>
+            </div>
+        </div>
+    </div>
+
+</header>
+
+<main>
+    <div class="pricing-header p-3 pb-md-4 mx-auto text-center">
+        <h1 class="display-4 fw-normal">Contracts</h1>
+        <p class="fs-5 text-muted">All clients contracts are here:</p>
+    </div>
+    <input class="form-control" id="myInput" type="text" placeholder="Search...">
+
+    <form th:action="@{/allContracts}" th:object="${contracts}" method="post">
+        <table class="table table-hover">
+            <thead>
+            <tr>
+                <th scope="col">Number</th>
+                <th scope="col">Tariff</th>
+                <th scope="col">User</th>
+            </tr>
+            </thead>
+            <tbody id="myTable">
+            <tr th:each="contract: ${contracts}">
+                <td th:text="${contract.number}">N/A</td>
+                <td th:text="${contract.tariff_id}">N/A</td>
+                <td th:text="${contract.user_id}">N/A</td>
+            </tr>
+            </tbody>
+        </table>
+    </form>
+</main>
+<script th:src="@{../resources/js/search.js}"></script>
+
+</body>
+</html>
