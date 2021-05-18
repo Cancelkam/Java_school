@@ -27,11 +27,9 @@ public class TariffsController {
     }
 
     @GetMapping(value = {"/index"})
-    public String loginPage(@RequestParam(required = false) String index, Model model) {
-        model.addAttribute("index", index);
+    public String welcomePage() {
         return "index";
     }
-
 
     @GetMapping(value = "/tariffs")
     public String getTariffs(Model model) {
@@ -43,12 +41,5 @@ public class TariffsController {
         model.addAttribute("tariffs", tariffDto);
         return "tariffs";
     }
-
-
-//
-//    @ModelAttribute("tariffs")
-//    public List<Tariff> tariffViewForms() {
-//        return tariffService.findAll();
-//    }
 
 }

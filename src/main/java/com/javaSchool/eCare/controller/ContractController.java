@@ -27,7 +27,7 @@ public class ContractController {
         return new ContractViewForm();
     }
 
-    @GetMapping(value = "/allContracts")
+    @GetMapping(value = "employee/allContracts")
     public String getContracts(Model model) {
         List<Contract> contracts = contractService.findAll();
         List<ContractViewForm> contractDto = new ArrayList<ContractViewForm>();

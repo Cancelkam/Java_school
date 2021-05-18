@@ -10,33 +10,21 @@ public class MainController {
 
     @GetMapping(value = {"/"})
     public String welcomePage(Model model) {
-
-        model.addAttribute("example", "example message");
-
         return "index";
     }
 
     @GetMapping(value = {"/login"})
-    public String loginPage(@RequestParam(required = false) String login, Model model) {
-        model.addAttribute("login", login);
+    public String loginPage(Model model) {
         return "login";
     }
 
-//    @GetMapping(value = {"/tariffs"})
-//    public String tariffPage(@RequestParam(required = false) String tariff, Model model) {
-//        model.addAttribute("tariff", tariff);
-//        return "tariffs";
-//    }
-
     @GetMapping("employee/hello")
     public String employeePage(Model model) {
-        model.addAttribute("employee");
         return "employee/hello";
     }
 
     @GetMapping("client/hello")
-    public String clientPage(@RequestParam(required = false) String client, Model model) {
-        model.addAttribute("client", client);
+    public String clientPage( Model model) {
         return "/client/hello";
     }
 

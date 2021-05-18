@@ -39,21 +39,4 @@ public class UserController {
         model.addAttribute("users", usersDto);
         return "employee/allUsers";
     }
-
-//    @RequestMapping(value = "/allUsers/{number}", method = RequestMethod.GET)
-//    public String getUserListByContract(@PathVariable String number, Model model) {
-//        model.addAttribute("search", userService.getUserByNumber(number));
-//        return "employee/allUsers";
-//    }
-
-//    @RequestMapping(value = "/allUsers/{number}", method = RequestMethod.GET)
-//    public String getUserListByEmail(@PathVariable String email, Model model) {
-//        model.addAttribute("search", userService.getUserByNumber(email));
-//        return "employee/allUsers";
-//    }
-
-
-//    @ModelAttribute("allUsers")
-//    public List<UserEntity> userAccountForms(){return userService.findAll();}
-
 }
