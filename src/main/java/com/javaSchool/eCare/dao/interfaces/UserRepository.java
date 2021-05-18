@@ -18,6 +18,7 @@ public interface UserRepository {
 
     void update(UserEntity user);
 
-    Collection<UserEntity> getRole(String email);
+//    Collection<UserEntity> getRole(String email);
 
+    String getRole();
 }

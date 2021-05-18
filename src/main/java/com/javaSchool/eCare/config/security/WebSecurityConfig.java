@@ -1,6 +1,7 @@
 package com.javaSchool.eCare.config.security;
 
 import com.javaSchool.eCare.config.handler.LoginSuccess;
+import com.javaSchool.eCare.service.implementation.UserDetailsImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
@@ -12,11 +13,11 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
-import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
 @EnableWebSecurity
@@ -25,8 +26,13 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
-    @Qualifier("userDetailsServiceImpl")
+    @Qualifier("userDetailsImpl")
     private UserDetailsService userDetailsService;
+
+    @Bean
+    public UserDetailsService userDetailsService() {
+        return new UserDetailsImpl();
+    }
 
     @Bean
     public PasswordEncoder passwordEncoder() {
@@ -41,10 +47,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         return auth;
     }
 
-//    @Bean
-//    public AuthenticationSuccessHandler successHandler() {
-//        return new LoginSuccess("/");
-//    }
+    @Bean
+    public AuthenticationSuccessHandler successHandler() {
+        return new LoginSuccess("/");
+    }
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
@@ -54,25 +60,33 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http
-                .csrf().disable()
+        http.sessionManagement()
+                .sessionCreationPolicy(SessionCreationPolicy.ALWAYS) //a session will always be created if one doesn't already exist
+                .and()
+                .csrf().disable() //CSRF protection
+//                .and()
                 .authorizeRequests()
                 .antMatchers("/", "/index", "/tariffs").permitAll()
-                .antMatchers("/employee/**").hasRole("EMPLOYEE")
-                .antMatchers("/client/**").hasRole("CLIENT")
+                .antMatchers("/employee/**").hasAuthority("EMPLOYEE")
+                .antMatchers("/client/**").hasAuthority("CLIENT")
                 .and().
-                formLogin()
-                .loginPage("/login.html")
+
+                formLogin().loginPage("/login")
                 .usernameParameter("email")
+                .passwordParameter("password")
                 .loginProcessingUrl("/authenticate-user")
+                .defaultSuccessUrl("/loginPost")
                 .permitAll()
-                .defaultSuccessUrl("/hello", true)
-                .and().
-                logout()
+                .and()
+
+                .logout()
+                .permitAll()
+                .logoutUrl("/logout")
                 .invalidateHttpSession(true)
-                .permitAll()
-                .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-                .logoutSuccessUrl("/");
+
+                .and()
+                .exceptionHandling()
+                .accessDeniedPage("/403");
     }
 
 }

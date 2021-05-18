@@ -29,7 +29,7 @@ public class UserController {
         return new UserAccountForm();
     }
 
-    @GetMapping(value = "/allUsers")
+    @GetMapping(value = "employee/allUsers")
     public String getUsers(Model model) {
         List<UserEntity> users = userService.findAll();
         List<UserAccountForm> usersDto = new ArrayList<UserAccountForm>();

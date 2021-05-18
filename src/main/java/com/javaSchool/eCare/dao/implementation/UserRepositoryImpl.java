@@ -53,12 +53,18 @@ public class UserRepositoryImpl implements UserRepository {
         sessionFactory.getCurrentSession().merge(user);
     }
 
-    public List<UserEntity> getRole(String email) {
-        Query query = (Query) sessionFactory.getCurrentSession()
-                .createQuery("SELECT role FROM UserEntity WHERE UserEntity.email = :email")
-                .setParameter("email", email).getSingleResult();
+//    public List<UserEntity> getRole(String email) {
+//        Query query = (Query) sessionFactory.getCurrentSession()
+//                .createQuery("SELECT role FROM UserEntity WHERE UserEntity.email = :email")
+//                .setParameter("email", email).getSingleResult();
+//
+//        return query.list();
+//
+//    }
 
-        return query.list();
-
+    @Override
+    public String getRole() {
+        return String.valueOf(sessionFactory.getCurrentSession()
+                .createQuery("SELECT role FROM UserEntity"));
     }
 }

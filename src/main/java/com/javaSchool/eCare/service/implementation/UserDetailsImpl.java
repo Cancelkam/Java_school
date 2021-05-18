@@ -14,34 +14,33 @@ import org.springframework.transaction.annotation.Transactional;
 import com.javaSchool.eCare.model.entity.UserEntity;
 import com.javaSchool.eCare.dao.interfaces.UserRepository;
 
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 
 @Service
 @Slf4j
 @RequiredArgsConstructor
-public class UserDetailsServiceImpl implements UserDetailsService {
+public class UserDetailsImpl implements UserDetailsService {
+
     @Autowired
-    private final UserRepository userRepository;
+    private UserRepository userRepository;
+
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        SimpleGrantedAuthority authority = new SimpleGrantedAuthority(userRepository.getRole());
+        return Arrays.asList(authority);
+    }
 
     @Override
     @Transactional
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-        UserEntity userEntity = new UserEntity();
-        try {
-            userEntity = userRepository.findByEmail(email);
-        } catch (Exception e) {
-            log.error("Error getting user by login", e);
+        UserEntity user = userRepository.findByEmail(email);
+        if (user == null) {
+            throw new UsernameNotFoundException("Could not find user");
         }
-
-        if (userEntity.getEmail() == null) {
-            throw new UsernameNotFoundException("Not found: " + email);
-        }
-        return new User(
-                userEntity.getEmail(),
-                userEntity.getPassword(),
-                mapRolesToAuthorities(userEntity)
-        );
+        UserDetails userDetails = (UserDetails) new org.springframework.security.core.userdetails.User(user.getEmail(),
+                user.getPassword(), mapRolesToAuthorities(user));
+        return userDetails;
     }
 
     private Collection<? extends GrantedAuthority> mapRolesToAuthorities(UserEntity userEntity) {
