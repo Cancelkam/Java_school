@@ -7,6 +7,7 @@ import com.javaSchool.eCare.dao.interfaces.TariffRepository;
 import com.javaSchool.eCare.model.dto.Tariff.TariffViewForm;
 import com.javaSchool.eCare.model.entity.Option;
 import com.javaSchool.eCare.model.entity.Tariff;
+import com.javaSchool.eCare.service.api.GenericService;
 import com.javaSchool.eCare.service.api.TariffService;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
@@ -22,16 +23,26 @@ import java.util.List;
 public class TariffServiceImpl implements TariffService {
 
     private final TariffRepository tariffRepository;
+
     @Autowired
     public TariffServiceImpl(TariffRepository tariffRepository) {
         this.tariffRepository = tariffRepository;
     }
 
 
-/*    @Override
+    @Override
     @Transactional
-    public void createEntity(Tariff tariff) {
+    public void createEntity(Tariff entity) {
+        tariffRepository.create(entity);
+    }
 
+    @Override
+    @Transactional
+    public void createNewTariff(TariffViewForm tariff) {
+        Tariff newTariff = new Tariff();
+        newTariff.setTitle(tariff.getTitle());
+        newTariff.setPrice(tariff.getPrice());
+        createEntity(newTariff);
     }
 
     @Override
@@ -50,7 +61,8 @@ public class TariffServiceImpl implements TariffService {
     @Transactional
     public void deleteEntity(Tariff tariff) {
 
-    }*/
+    }
+
     @Override
     @Transactional
     public List<Tariff> findAll() {

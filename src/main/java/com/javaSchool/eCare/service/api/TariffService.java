@@ -7,9 +7,11 @@ import com.javaSchool.eCare.model.entity.Tariff;
 import java.util.Collection;
 import java.util.List;
 
-public interface TariffService /*extends GenericService<Tariff, Integer>*/ {
+public interface TariffService extends GenericService<Tariff, Integer>{
 
     public List<Tariff> findAll();
+
+    public void createNewTariff(TariffViewForm tariff);
 
     public List<TariffViewForm> getTariffViewList(Collection<Tariff> tariffs);
 

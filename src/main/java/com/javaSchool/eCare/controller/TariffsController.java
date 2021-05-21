@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,7 +22,7 @@ public class TariffsController {
         this.tariffService = tariffService;
     }
 
-    @ModelAttribute("tariff")
+    @ModelAttribute()
     public TariffViewForm tariffViewForm() {
         return new TariffViewForm();
     }
@@ -42,4 +43,28 @@ public class TariffsController {
         return "tariffs";
     }
 
+    //    @GetMapping("/tariff/{id}")
+//    public String findTariffId(@PathVariable("id") int id, Model model) {
+//        List<TariffViewForm> tariffViewFormList = tariffService.getEntityById(id);
+//        model.addAttribute("tariffViewFormList", tariffViewFormList);
+//        return "employee/tariff";
+//    }
+//
+//    @GetMapping("/add/{id}")
+//    public String createNewTariff(@PathVariable("id") int id, Model model) {
+//        TariffViewForm tariffViewForm = tariffService.createNewTariff(TariffViewForm id);
+//        model.addAttribute("tariff", tariffViewForm);
+//        return "employee/addTariff";
+//    }
+//
+    @GetMapping(value = {"/addTariff"})
+    public String addTariffPage() {
+        return "employee/addTariff";
+    }
+
+    @PostMapping(value = "/add")
+    public String addTariff(@ModelAttribute("tariff") @Valid TariffViewForm tariffViewForm) {
+        tariffService.createNewTariff(tariffViewForm);
+        return "redirect:tariffs";
+    }
 }

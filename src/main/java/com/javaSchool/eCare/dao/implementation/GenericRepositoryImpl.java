@@ -2,6 +2,7 @@ package com.javaSchool.eCare.dao.implementation;
 
 
 import com.javaSchool.eCare.dao.interfaces.GenericRepository;
+import com.javaSchool.eCare.model.entity.Tariff;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -31,6 +32,10 @@ public class GenericRepositoryImpl<Entity,Integer> implements GenericRepository<
         return session.getCurrentSession()
                 .createQuery("from " + entityClass.getName(), entityClass)
                 .getResultList();
+    }
+    @Override
+    public void create(Entity entity) {
+        session.getCurrentSession().persist(entity);
     }
 
 //    @Override
