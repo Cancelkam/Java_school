@@ -2,15 +2,18 @@ package com.javaSchool.eCare.dao.implementation;
 
 
 import com.javaSchool.eCare.dao.interfaces.GenericRepository;
+import com.javaSchool.eCare.dao.interfaces.TariffRepository;
 import com.javaSchool.eCare.model.entity.Tariff;
 import org.hibernate.SessionFactory;
+import org.hibernate.sql.Select;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.awt.*;
 import java.lang.reflect.ParameterizedType;
 import java.util.List;
 
-public class GenericRepositoryImpl<Entity,Integer> implements GenericRepository<Entity,Integer>{
+public class GenericRepositoryImpl<Entity, Integer> implements GenericRepository<Entity, Integer> {
 
 
     private final Class<Entity> entityClass;
@@ -28,27 +31,38 @@ public class GenericRepositoryImpl<Entity,Integer> implements GenericRepository<
     }
 
     @Override
-    public List<Entity> findAll(){
+    public List<Entity> findAll() {
         return session.getCurrentSession()
                 .createQuery("from " + entityClass.getName(), entityClass)
                 .getResultList();
     }
+
     @Override
-    public void create(Entity entity) {
+    public void save(Entity entity) {
         session.getCurrentSession().persist(entity);
     }
 
-//    @Override
+    @Override
+    public void delete(Entity entity) {
+        session.getCurrentSession().delete(session.getCurrentSession().merge(entity));
+    }
+
+    //    @Override
 //    public Entity save(Entity entity) {
 //        session.getCurrentSession().persist(entity);
 //        session.getCurrentSession().flush();
 //        return entity;
 //    }
 //
-//    @Override
-//    public Entity update(Entity entity){
-//        session.getCurrentSession()
-//                .merge(entity);
-//        return entity;
-//    }
+    @Override
+    public void update(Entity entity) {
+        session.getCurrentSession()
+                .merge(entity);
+    }
+
+    @Override
+    public Entity read(Integer id) {
+        return session.getCurrentSession()
+                .find(entityClass, id);
+    }
 }
