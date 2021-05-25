@@ -67,4 +67,25 @@ public class TariffsController {
         tariffService.createNewTariff(tariffViewForm);
         return "redirect:tariffs";
     }
+
+//    @GetMapping(value = {"/deleteTariff"})
+//    public String deleteTariff(@PathVariable("id") int id, Model model){
+//        TariffViewForm tariffViewFormList = tariffService.getEntityById();
+//        tariffService.deleteEntity(TariffViewForm );
+//    }
+
+    @GetMapping(value = {"/editTariff/{id}"})
+    public String editTariff(@PathVariable("id") int id, Model model){
+       Tariff tariff = tariffService.getEntityById(id);
+        model.addAttribute("tariff", tariff);
+        return "employee/editTariff";
+    }
+
+
+//    @PostMapping(value = "/editTariff/{id}")
+//    public String saveTariff(Model model, @PathVariable int id) {
+//
+//        return "redirect:tariffs";
+//    }
+
 }

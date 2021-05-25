@@ -1,16 +1,11 @@
 package com.javaSchool.eCare.service.implementation;
 
 
-import com.javaSchool.eCare.dao.implementation.TariffRepositoryImpl;
-
 import com.javaSchool.eCare.dao.interfaces.TariffRepository;
 import com.javaSchool.eCare.model.dto.Tariff.TariffViewForm;
 import com.javaSchool.eCare.model.entity.Option;
 import com.javaSchool.eCare.model.entity.Tariff;
-import com.javaSchool.eCare.service.api.GenericService;
 import com.javaSchool.eCare.service.api.TariffService;
-import lombok.RequiredArgsConstructor;
-import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -33,7 +28,7 @@ public class TariffServiceImpl implements TariffService {
     @Override
     @Transactional
     public void createEntity(Tariff entity) {
-        tariffRepository.create(entity);
+        tariffRepository.save(entity);
     }
 
     @Override
@@ -47,14 +42,14 @@ public class TariffServiceImpl implements TariffService {
 
     @Override
     @Transactional
-    public Tariff getEntityById(Tariff id) {
-        return null;
+    public Tariff getEntityById(Integer id) {
+        return tariffRepository.read(id);
     }
 
     @Override
     @Transactional
-    public void updateEntity(Tariff tariff) {
-
+    public void updateEntity(Tariff entity) {
+    tariffRepository.update(entity);
     }
 
     @Override
