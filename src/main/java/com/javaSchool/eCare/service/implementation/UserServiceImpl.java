@@ -12,11 +12,11 @@ import java.util.List;
 @Service
 public class UserServiceImpl implements UserService {
 
-//    private final UserService userService;
+    //    private final UserService userService;
     private final UserRepository userRepository;
 
 
-        @Autowired
+    @Autowired
     public UserServiceImpl(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
@@ -29,7 +29,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     @Transactional
-        public UserEntity getUserByNumber(String number) {
+    public UserEntity getUserByNumber(String number) {
         return userRepository.getUserByNumber(number);
     }
 }

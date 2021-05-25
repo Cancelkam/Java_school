@@ -1,35 +1,38 @@
 package com.javaSchool.eCare.controller;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+
 
 @Controller
 public class MainController {
 
     @GetMapping(value = {"/"})
-    public String welcomePage(Model model) {
-        return "index";
-    }
+    public String welcomePage() { return "index"; }
 
     @GetMapping(value = {"/login"})
-    public String loginPage(Model model) {
+    public String loginPage() {
         return "login";
     }
 
     @GetMapping("employee/hello")
-    public String employeePage(Model model) {
+    public String employeePage() {
         return "employee/hello";
     }
 
     @GetMapping("client/hello")
-    public String clientPage( Model model) {
-        return "/client/hello";
+    public String clientPage() {
+        return "client/hello";
     }
 
-    @GetMapping("/403")
-    public String error403() {
-        return "/error/403";
+    @GetMapping("employee/addTariff")
+    public String saveTariff() {
+        return "employee/addTariff";
     }
+
+    @GetMapping("employee/addUser")
+    public String saveUser() { return "employee/addUser"; }
+
+    @GetMapping("/403")
+    public String error403() { return "/error/403"; }
 }
