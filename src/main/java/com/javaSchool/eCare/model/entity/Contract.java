@@ -27,6 +27,12 @@ public class Contract {
     @Size(min = 1, max = 45)
     private String number;
 
+    @Column(name = "is_blocked")
+    private boolean is_blocked;
+
+    @Column(name = "is_blocked_by_admin")
+    private boolean is_blocked_by_admin;
+
     @ManyToOne
     @JoinColumn(name = "user_id")
     private UserEntity userEntity;
