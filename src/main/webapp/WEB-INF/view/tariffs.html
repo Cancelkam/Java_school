@@ -52,7 +52,7 @@
                     </svg>
                 </a>
                 <div class="text-end">
-                    <a  href="/index" class="btn btn-outline-light me-2">Home</a>
+                    <a  href="/employee/hello" class="btn btn-outline-light me-2">Back</a>
                 </div>
             </div>
         </div>
@@ -80,6 +80,7 @@
                     <td th:text="${tariff.price}">N/A</td>
                     <td><!--/*@thymesVar id="idTariff" type=""*/-->
                     <a class="btn btn-light" role="button" th:href="@{/editTariff/{id} (id=${tariff.idTariff})}">Edit</a></td>
+                   <td> <a th:if="${tariff.isDeprecated()}" class="btn btn-light" role="button" th:href="@{/tariffs/{id}/delete (id=${tariff.idTariff})}">Delete</a></td>
                 </tr>
                 </tbody>
             </table>
