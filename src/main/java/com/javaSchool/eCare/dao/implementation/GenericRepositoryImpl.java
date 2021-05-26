@@ -39,7 +39,7 @@ public class GenericRepositoryImpl<Entity, Integer> implements GenericRepository
 
     @Override
     public void save(Entity entity) {
-        session.getCurrentSession().persist(entity);
+        session.getCurrentSession().saveOrUpdate(entity);
     }
 
     @Override

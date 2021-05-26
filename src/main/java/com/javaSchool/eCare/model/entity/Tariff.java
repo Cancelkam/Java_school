@@ -25,6 +25,9 @@ public class Tariff {
     @Column(name = "price", nullable = false)
     private double price;
 
+    @Column(name = "is_deprecated")
+    private boolean deprecated;
+
     @OneToMany(mappedBy = "tariff", cascade = CascadeType.ALL)
     private Set<Contract> contracts;
 

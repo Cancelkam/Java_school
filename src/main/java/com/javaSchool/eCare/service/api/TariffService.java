@@ -15,11 +15,18 @@ public interface TariffService extends GenericService<Tariff, Integer>{
 
     public List<TariffViewForm> getTariffViewList(Collection<Tariff> tariffs);
 
-    public void updateTariff(Tariff tariff);
+    public void updateTariff(TariffViewForm tariff);
 
     public void addOption(Tariff tariff, Option option);
 
     public void deleteOption(Tariff tariff, Option option);
+
+
+//    public void deleteDeprecatedTariffs();
+//
+//    public List<Tariff> deprecatedTariffs();
+//
+    void makeTariffDeprecated(int id);
 
 
 }

@@ -13,12 +13,14 @@ public class TariffViewForm {
     private int idTariff;
     private String title;
     private double price;
+    private boolean deprecated;
     private Set<Option> options;
 
     public TariffViewForm(Tariff tariff) {
         this.idTariff = tariff.getIdTariff();
         this.title = tariff.getTitle();
         this.price = tariff.getPrice();
+        this.deprecated = tariff.isDeprecated();
 //        this.options = tariff.getOptions();
     }
 }

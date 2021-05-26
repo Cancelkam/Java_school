@@ -62,7 +62,7 @@ public class TariffsController {
         return "employee/addTariff";
     }
 
-    @PostMapping(value = "/add")
+    @PostMapping(value = "/addTariff")
     public String addTariff(@ModelAttribute("tariff") @Valid TariffViewForm tariffViewForm) {
         tariffService.createNewTariff(tariffViewForm);
         return "redirect:tariffs";
@@ -75,17 +75,25 @@ public class TariffsController {
 //    }
 
     @GetMapping(value = {"/editTariff/{id}"})
-    public String editTariff(@PathVariable("id") int id, Model model){
-       Tariff tariff = tariffService.getEntityById(id);
+    public String editTariff(@PathVariable("id") int id, Model model) {
+        Tariff tariff = tariffService.getEntityById(id);
         model.addAttribute("tariff", tariff);
         return "employee/editTariff";
     }
 
 
-//    @PostMapping(value = "/editTariff/{id}")
-//    public String saveTariff(Model model, @PathVariable int id) {
-//
-//        return "redirect:tariffs";
-//    }
+    @PostMapping(value = "/editTariff/{id}")
+    public String saveTariff(@PathVariable int id, @ModelAttribute("tariff") @Valid TariffViewForm tariffViewForm) {
+        tariffViewForm.setIdTariff(id);
+        tariffService.updateTariff(tariffViewForm);
+        return "redirect:/../tariffs";
+    }
+
+    @GetMapping(value = "/tariffs/{id}/delete")
+    public String deleteTariff(@PathVariable int id) {
+        Tariff tariff = tariffService.getEntityById(id);
+        tariffService.deleteEntity(tariff);
+        return "redirect:/tariffs";
+    }
 
 }

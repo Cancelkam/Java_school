@@ -55,7 +55,7 @@ public class TariffServiceImpl implements TariffService {
     @Override
     @Transactional
     public void deleteEntity(Tariff tariff) {
-
+        tariffRepository.delete(tariff);
     }
 
     @Override
@@ -72,8 +72,14 @@ public class TariffServiceImpl implements TariffService {
 
     @Override
     @Transactional
-    public void updateTariff(Tariff tariff) {
-
+    public void updateTariff(TariffViewForm tariff) {
+        Tariff newTariff = new Tariff();
+        newTariff.setIdTariff(tariff.getIdTariff());
+        newTariff.setTitle(tariff.getTitle());
+        newTariff.setPrice(tariff.getPrice());
+        newTariff.setDeprecated(tariff.isDeprecated());
+        createEntity(newTariff);
+        tariffRepository.save(newTariff);
     }
 
     @Override
@@ -86,5 +92,13 @@ public class TariffServiceImpl implements TariffService {
     @Transactional
     public void deleteOption(Tariff tariff, Option option) {
 
+    }
+
+    @Override
+    @Transactional
+    public void makeTariffDeprecated(int id) {
+        Tariff tariff = getEntityById(id);
+        tariff.setDeprecated(true);
+        updateEntity(tariff);
     }
 }
