@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <title>editTariff</title>
-    <link th:href="@{../resources/css/bootstrap.min.css}" rel="stylesheet">
-    <link th:href="@{../resources/css/index.css}" rel="stylesheet">
+    <link th:href="@{/resources/css/bootstrap.min.css}" rel="stylesheet">
+    <link th:href="@{/resources/css/index.css}" rel="stylesheet">
 </head>
 <body>
 <header>
@@ -27,7 +27,7 @@
         <h1 class="display-4 fw-normal">Edit Tariff</h1>
         <p class="fs-5 text-muted">You can edit tariff here:</p>
     </div>
-<form th:action="@{/editTariff/{id} (id = ${id} ) }"  th:object="${tariff}" method="post" >
+<form th:action="@{/employee/editTariff/{id} (id = ${id} ) }"  th:object="${tariff}" method="post" >
     <div class="g-3">
         <div class="col">
             <input th:value="${tariff.title}" type="text" name="title" class="form-control" placeholder="Title" aria-label="First name">

@@ -13,8 +13,8 @@
 
 
     <!-- Bootstrap core CSS -->
-    <link th:href="@{resources/css/bootstrap.min.css}" rel="stylesheet">
-    <link th:href="@{resources/css/index.css}" rel="stylesheet">
+    <link th:href="@{/resources/css/bootstrap.min.css}" rel="stylesheet">
+    <link th:href="@{/resources/css/index.css}" rel="stylesheet">
 
     <style>
         .bd-placeholder-img {
@@ -65,7 +65,7 @@
     </div>
 
     <main>
-        <form th:action="@{/tariffs}" th:object="${tariffs}" method="post">
+        <form th:action="@{/employee/tariffs}" th:object="${tariffs}" method="post">
             <table class="table table-hover">
                 <thead>
                 <tr>
@@ -79,8 +79,8 @@
                     <td th:text="${tariff.title}">N/A</td>
                     <td th:text="${tariff.price}">N/A</td>
                     <td><!--/*@thymesVar id="idTariff" type=""*/-->
-                    <a class="btn btn-light" role="button" th:href="@{/editTariff/{id} (id=${tariff.idTariff})}">Edit</a></td>
-                   <td> <a th:if="${tariff.isDeprecated()}" class="btn btn-light" role="button" th:href="@{/tariffs/{id}/delete (id=${tariff.idTariff})}">Delete</a></td>
+                    <a class="btn btn-light" role="button" th:href="@{/employee/editTariff/{id} (id=${tariff.idTariff})}">Edit</a></td>
+                   <td> <a th:if="${tariff.isDeprecated()}" class="btn btn-light" role="button" th:href="@{/employee/tariffs/{id}/delete (id=${tariff.idTariff})}">Delete</a></td>
                 </tr>
                 </tbody>
             </table>

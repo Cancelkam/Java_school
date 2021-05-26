@@ -32,7 +32,7 @@ public class TariffsController {
         return "index";
     }
 
-    @GetMapping(value = "/tariffs")
+    @GetMapping(value = "/employee/tariffs")
     public String getTariffs(Model model) {
         List<Tariff> tariffs = tariffService.findAll();
         List<TariffViewForm> tariffDto = new ArrayList<TariffViewForm>();
@@ -40,7 +40,7 @@ public class TariffsController {
             tariffDto.add(new TariffViewForm(tariff));
         }
         model.addAttribute("tariffs", tariffDto);
-        return "tariffs";
+        return "/employee/tariffs";
     }
 
     //    @GetMapping("/tariff/{id}")
@@ -57,15 +57,15 @@ public class TariffsController {
 //        return "employee/addTariff";
 //    }
 //
-    @GetMapping(value = {"/addTariff"})
+    @GetMapping(value = {"employee/addTariff"})
     public String addTariffPage() {
-        return "employee/addTariff";
+        return "/employee/addTariff";
     }
 
-    @PostMapping(value = "/addTariff")
+    @PostMapping(value = "employee/addTariff")
     public String addTariff(@ModelAttribute("tariff") @Valid TariffViewForm tariffViewForm) {
         tariffService.createNewTariff(tariffViewForm);
-        return "redirect:tariffs";
+        return "redirect:/employee/tariffs";
     }
 
 //    @GetMapping(value = {"/deleteTariff"})
@@ -74,26 +74,25 @@ public class TariffsController {
 //        tariffService.deleteEntity(TariffViewForm );
 //    }
 
-    @GetMapping(value = {"/editTariff/{id}"})
+    @GetMapping(value = {"employee/editTariff/{id}"})
     public String editTariff(@PathVariable("id") int id, Model model) {
         Tariff tariff = tariffService.getEntityById(id);
         model.addAttribute("tariff", tariff);
-        return "employee/editTariff";
+        return "/employee/editTariff";
     }
 
 
-    @PostMapping(value = "/editTariff/{id}")
+    @PostMapping(value = "employee/editTariff/{id}")
     public String saveTariff(@PathVariable int id, @ModelAttribute("tariff") @Valid TariffViewForm tariffViewForm) {
         tariffViewForm.setIdTariff(id);
         tariffService.updateTariff(tariffViewForm);
-        return "redirect:/../tariffs";
+        return "redirect:/employee/tariffs";
     }
 
-    @GetMapping(value = "/tariffs/{id}/delete")
+    @GetMapping(value = "employee/tariffs/{id}/delete")
     public String deleteTariff(@PathVariable int id) {
         Tariff tariff = tariffService.getEntityById(id);
         tariffService.deleteEntity(tariff);
-        return "redirect:/tariffs";
+        return "redirect:/employee/tariffs";
     }
-
 }

@@ -25,10 +25,10 @@ public class MainController {
         return "client/hello";
     }
 
-    @GetMapping("employee/addTariff")
-    public String saveTariff() {
-        return "employee/addTariff";
-    }
+//    @GetMapping("employee/addTariff")
+//    public String saveTariff() {
+//        return "employee/addTariff";
+//    }
 
     @GetMapping("employee/addUser")
     public String saveUser() { return "employee/addUser"; }

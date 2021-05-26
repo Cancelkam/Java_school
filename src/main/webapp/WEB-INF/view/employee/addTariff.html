@@ -21,11 +21,12 @@
     </div>
   </div>
 </header>
+<main>
 <div class="pricing-header p-3 pb-md-4 mx-auto text-center">
   <h1 class="display-4 fw-normal">Add Tariff</h1>
   <p class="fs-5 text-muted">You can create a new tariff here:</p>
 </div>
-<form th:action="@{/addTariff}" th:object="${tariffViewForm}" method="post" >
+<form th:action="@{/employee/addTariff}" th:object="${tariffViewForm}" method="post" >
   <div class="g-3">
     <div class="col">
       <input type="text" name="title" class="form-control" placeholder="Title" aria-label="First name">
@@ -38,5 +39,6 @@
     </button>
   </div>
 </form>
+</main>
 </body>
 </html>
