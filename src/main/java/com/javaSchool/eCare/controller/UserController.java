@@ -37,6 +37,17 @@ public class UserController {
             usersDto.add(new UserAccountForm(user));
         }
         model.addAttribute("users", usersDto);
-        return "employee/allUsers";
+        return "/employee/allUsers";
+    }
+
+
+    @GetMapping(value = "/employee/search/result")
+    public String findContractByNumber(@RequestParam(value = "number", required = true) String number, Model model) {
+        UserEntity user = userService.getUserByNumber(number);
+        List<UserAccountForm> usersDto = new ArrayList<UserAccountForm>();
+
+        usersDto.add(new UserAccountForm(user));
+        model.addAttribute("users", usersDto);
+        return "/employee/allUsers";
     }
 }
