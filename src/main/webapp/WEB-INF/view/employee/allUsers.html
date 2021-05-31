@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <title>allUsers</title>
-    <link th:href="@{../resources/css/bootstrap.min.css}" rel="stylesheet">
-    <link th:href="@{../resources/css/index.css}" rel="stylesheet">
+    <link th:href="@{/resources/css/bootstrap.min.css}" rel="stylesheet">
+    <link th:href="@{/resources/css/index.css}" rel="stylesheet">
     <script th:src="@{https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js}"></script>
 
     <style>
@@ -44,7 +44,6 @@
         <h1 class="display-4 fw-normal">Clients</h1>
         <p class="fs-5 text-muted">All clients are here:</p>
     </div>
-    <input class="form-control" id="myInput" type="text" placeholder="Search...">
     <form th:action="@{/allUsers}" th:object="${users}" method="post">
         <table class="table table-hover">
             <thead>
@@ -57,7 +56,7 @@
                 <th scope="col">status</th>
             </tr>
             </thead>
-            <tbody id="myTable">
+            <tbody>
             <tr th:each="user: ${users}">
                 <td th:text="${user.fullname}">N/A</td>
                 <td th:text="${user.date}">N/A</td>
