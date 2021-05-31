@@ -12,4 +12,6 @@ public interface OptionRepository {
     void add(Option option);
 
     void update(Option option);
+    List<Option> getCurrentOptionsByTariff(int idTariff);
+//    List<Option> getAvailableOptionsByTariff(int idTariff);
 }

@@ -1,7 +1,9 @@
 package com.javaSchool.eCare.controller;
 
 import com.javaSchool.eCare.model.dto.Tariff.TariffViewForm;
+import com.javaSchool.eCare.model.entity.Option;
 import com.javaSchool.eCare.model.entity.Tariff;
+import com.javaSchool.eCare.service.api.OptionService;
 import com.javaSchool.eCare.service.api.TariffService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,10 +18,12 @@ import java.util.List;
 public class TariffsController {
 
     private final TariffService tariffService;
+    private final OptionService optionService;
 
     @Autowired
-    public TariffsController(TariffService tariffService) {
+    public TariffsController(TariffService tariffService, OptionService optionService) {
         this.tariffService = tariffService;
+        this.optionService = optionService;
     }
 
     @ModelAttribute()
@@ -77,7 +81,9 @@ public class TariffsController {
     @GetMapping(value = {"employee/editTariff/{id}"})
     public String editTariff(@PathVariable("id") int id, Model model) {
         Tariff tariff = tariffService.getEntityById(id);
+//        List<Option> options = optionService.findAll();
         model.addAttribute("tariff", tariff);
+//        model.addAttribute("options", options);
         return "/employee/editTariff";
     }
 
