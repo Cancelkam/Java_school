@@ -34,4 +34,9 @@ public class Tariff {
     @ManyToMany(mappedBy = "tariffs")
     private Set<Option> options;
 
+    public void addOption(Option option){
+        options.add(option);
+        option.getTariffs().add(this);
+    }
+
 }

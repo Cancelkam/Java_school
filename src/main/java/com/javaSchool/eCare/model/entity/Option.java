@@ -44,4 +44,18 @@ public class Option {
             inverseJoinColumns = @JoinColumn(name = "idContract")
     )
     private Set<Contract> contracts;
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(
+            name = "associated_options",
+            joinColumns = @JoinColumn(name = "optionId", referencedColumnName = "idOption"),
+            inverseJoinColumns = @JoinColumn(name = "associatedoptionid", referencedColumnName = "idOption"))
+    private Set<Option> associatedOptions;
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(
+            name = "incompatible_options",
+            joinColumns = @JoinColumn(name = "optionId", referencedColumnName = "idOption"),
+            inverseJoinColumns = @JoinColumn(name = "incompatibleoptionid", referencedColumnName = "idOption"))
+    private Set<Option> incompatibledOptions;
 }
