@@ -40,7 +40,7 @@ public class Contract {
     @ManyToOne
     @JoinColumn(name = "tariff_id", nullable = false)
     private Tariff tariff;
-
-    @ManyToMany(mappedBy = "contracts")
-    private Set<Option> options;
+//
+//    @ManyToMany(mappedBy = "contracts")
+//    private Set<Option> options;
 }

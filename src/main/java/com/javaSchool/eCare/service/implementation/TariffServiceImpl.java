@@ -82,26 +82,26 @@ public class TariffServiceImpl implements TariffService {
         tariffRepository.save(newTariff);
     }
 
-    @Override
-    @Transactional
-    public void addOption(Tariff tariff, Option option) {
-        tariff.addOption(option);
-        for (Option opt : option.getAssociatedOptions()) {
-            tariff.addOption(opt);
-        }
-        updateEntity(tariff);
-
-    }
-
-    @Override
-    @Transactional
-    public void deleteOption(Tariff tariff, Option option) {
-        tariff.getOptions().remove(option);
-        for (Option opt : option.getAssociatedOptions()) {
-            tariff.getOptions().remove(opt);
-        }
-        tariffRepository.update(tariff);
-    }
+//    @Override
+//    @Transactional
+//    public void addOption(Tariff tariff, Option option) {
+//        tariff.addOption(option);
+//        for (Option opt : option.getAssociatedOptions()) {
+//            tariff.addOption(opt);
+//        }
+//        updateEntity(tariff);
+//
+//    }
+//
+//    @Override
+//    @Transactional
+//    public void deleteOption(Tariff tariff, Option option) {
+//        tariff.getOptions().remove(option);
+//        for (Option opt : option.getAssociatedOptions()) {
+//            tariff.getOptions().remove(opt);
+//        }
+//        tariffRepository.update(tariff);
+//    }
 
     @Override
     @Transactional

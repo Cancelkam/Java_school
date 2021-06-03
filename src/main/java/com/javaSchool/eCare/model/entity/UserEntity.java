@@ -55,7 +55,7 @@ public class UserEntity {
     private String email;
 
     @Column(name = "password")
-    @Size(min = 1, max = 45)
+    @Size(min = 1, max = 145)
     private String password;
 
     @Column(name = "role")

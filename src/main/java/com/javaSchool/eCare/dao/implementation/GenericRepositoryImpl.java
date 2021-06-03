@@ -8,6 +8,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.sql.Select;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.awt.*;
 import java.lang.reflect.ParameterizedType;
@@ -18,7 +19,7 @@ public class GenericRepositoryImpl<Entity, Integer> implements GenericRepository
 
     private final Class<Entity> entityClass;
 
-    private SessionFactory session;
+    SessionFactory session;
 
     @Autowired
     public void setSessionFactory(SessionFactory sessionFactory) {
@@ -32,7 +33,7 @@ public class GenericRepositoryImpl<Entity, Integer> implements GenericRepository
 
     @Override
     public List<Entity> findAll() {
-        return session.getCurrentSession()
+                return session.getCurrentSession()
                 .createQuery("from " + entityClass.getName(), entityClass)
                 .getResultList();
     }

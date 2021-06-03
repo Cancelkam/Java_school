@@ -4,6 +4,7 @@ import com.javaSchool.eCare.dao.interfaces.OptionRepository;
 import com.javaSchool.eCare.model.entity.Option;
 import com.javaSchool.eCare.model.entity.Tariff;
 import com.javaSchool.eCare.service.api.OptionService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -14,6 +15,7 @@ public class OptionServiceImpl implements OptionService {
 
     private final OptionRepository optionRepository;
 
+    @Autowired
     public OptionServiceImpl(OptionRepository optionRepository) {
         this.optionRepository = optionRepository;
     }
@@ -42,16 +44,16 @@ public class OptionServiceImpl implements OptionService {
     @Transactional
     public List<Option> findAll() { return optionRepository.findAll(); }
 
-    @Override
-    @Transactional
-    public List<Option> getCurrentOptionsByTariff(int idTariff) {
-        return null;
-    }
-
 //    @Override
-//    public List<Option> getAvailableOptionsByTariff(int idTariff) {
-//        return optionRepository.getAvailableOptionsByTariff(idTariff);
+//    @Transactional
+//    public List<Option> getCurrentOptionsByTariff(int idTariff) {
+//        return null;
 //    }
+
+    @Override
+    public List<Option> getAvailableOptionsByTariff(Integer idTariff) {
+        return optionRepository.getAvailableOptionsByTariff(idTariff);
+    }
 
 
 }

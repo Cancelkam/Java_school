@@ -6,10 +6,10 @@ import java.util.List;
 
 public interface OptionService extends GenericService<Option, Integer>{
 
-//    List<Option> findAll();
+    List<Option> findAll();
 
-    List<Option> getCurrentOptionsByTariff(int idTariff);
-//    List<Option> getAvailableOptionsByTariff(int idTariff);
+//    List<Option> getCurrentOptionsByTariff(int idTariff);
+    List<Option> getAvailableOptionsByTariff(Integer idTariff);
 
 
 
