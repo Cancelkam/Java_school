@@ -41,9 +41,9 @@ public class OptionRepositoryImpl extends GenericRepositoryImpl<Option,Integer> 
 //
     @Override
     @Transactional
-    public List<Option> getAvailableOptionsByTariff(Integer idTariff) {
+    public List<Option> getAvailableOptionsByTariff(Integer id) {
         return this.session.getCurrentSession()
-                .createQuery("from Option o where Tariff.idTariff=:idTariff")
-                .setParameter("idTariff", idTariff).getResultList();
+                .createQuery("select o from Option as o join Tariff as t on t.idTariff=:id")
+                .setParameter("id", id).getResultList();
     }
 }
