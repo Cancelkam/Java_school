@@ -30,10 +30,11 @@ public class ContractController {
     @GetMapping(value = "employee/allContracts")
     public String getContracts(Model model) {
         List<Contract> contracts = contractService.findAll();
-        List<ContractViewForm> contractDto = new ArrayList<ContractViewForm>();
-        for (Contract contract : contracts) {
-            contractDto.add(new ContractViewForm(contract));
-        }
+        List<ContractViewForm> contractDto = contractService.getContractViewList(contracts);
+//        List<ContractViewForm> contractDto = new ArrayList<ContractViewForm>();
+//        for (Contract contract : contracts) {
+//            contractDto.add(new ContractViewForm(contract));
+//        }
         model.addAttribute("contracts", contractDto);
         return "employee/allContracts";
     }

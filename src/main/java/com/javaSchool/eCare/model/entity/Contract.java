@@ -27,14 +27,16 @@ public class Contract {
     @Size(min = 1, max = 45)
     private String number;
 
+    @Basic
     @Column(name = "is_blocked")
-    private boolean is_blocked;
+    private boolean blocked;
 
+    @Basic
     @Column(name = "is_blocked_by_admin")
-    private boolean is_blocked_by_admin;
+    private boolean blocked_by_admin;
 
-    @ManyToOne
-    @JoinColumn(name = "user_id")
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "user_id", nullable = false)
     private UserEntity userEntity;
 
     @ManyToOne

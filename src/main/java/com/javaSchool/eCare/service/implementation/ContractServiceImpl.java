@@ -1,6 +1,7 @@
 package com.javaSchool.eCare.service.implementation;
 
 import com.javaSchool.eCare.dao.interfaces.ContractRepository;
+import com.javaSchool.eCare.model.dto.contract.ContractViewForm;
 import com.javaSchool.eCare.model.entity.Contract;
 import com.javaSchool.eCare.model.entity.Tariff;
 import com.javaSchool.eCare.service.api.ContractService;
@@ -8,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 
@@ -22,9 +25,43 @@ public class ContractServiceImpl implements ContractService {
     }
 
     @Override
+    public void createEntity(Contract contract) {
+
+    }
+
+    @Override
+    public Contract getEntityById(Integer id) {
+        return null;
+    }
+
+    @Override
+    public void updateEntity(Contract contract) {
+
+    }
+
+    @Override
+    public void deleteEntity(Contract contract) {
+
+    }
+
+    @Override
     @Transactional
     public List<Contract> findAll() {
         return contractRepository.findAll();
+    }
+
+    @Override
+    @Transactional
+    public List<ContractViewForm> getContractViewList(Collection<Contract> contracts) {
+        List<ContractViewForm> contractDto = new ArrayList<ContractViewForm>();
+//        try {
+            for (Contract contract : contracts) {
+                contractDto.add(new ContractViewForm(contract));
+            }
+            return contractDto;
+//        } catch (Exception e) {
+//            return contractDto;
+//        }
     }
 
 }
