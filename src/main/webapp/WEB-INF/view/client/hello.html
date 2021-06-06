@@ -36,7 +36,7 @@
                 </svg>
             </a>
             <div class="text-end">
-                <a  href="/" class="btn btn-outline-light me-2">YourContract</a>
+                <a  th:href="@{/client/{id}/yourContract (id = ${user.idUser})}"class="btn btn-outline-light me-2">YourContract</a>
                 <a  href="/" class="btn btn-outline-light me-2">YourTariff</a>
                 <a  href="/" class="btn btn-outline-light me-2">YourOptions</a>
                 <a  href="/logout" class="btn btn-outline-light me-2">Logout</a>
