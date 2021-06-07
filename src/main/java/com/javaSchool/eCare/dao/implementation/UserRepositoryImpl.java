@@ -15,12 +15,12 @@ import java.util.List;
 @Repository
 public class UserRepositoryImpl extends GenericRepositoryImpl<UserEntity,Integer> implements UserRepository {
 
-    private SessionFactory session;
+//    private SessionFactory session;
 
-    @Autowired
-    public void setSessionFactory(SessionFactory sessionFactory) {
-        this.session = sessionFactory;
-    }
+//    @Autowired
+//    public void setSessionFactory(SessionFactory sessionFactory) {
+//        this.session = sessionFactory;
+//    }
 
     public UserEntity findByEmail(String email) {
         return (UserEntity) session.getCurrentSession()

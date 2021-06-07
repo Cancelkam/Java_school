@@ -54,14 +54,10 @@ public class ContractServiceImpl implements ContractService {
     @Transactional
     public List<ContractViewForm> getContractViewList(Collection<Contract> contracts) {
         List<ContractViewForm> contractDto = new ArrayList<ContractViewForm>();
-//        try {
             for (Contract contract : contracts) {
                 contractDto.add(new ContractViewForm(contract));
             }
             return contractDto;
-//        } catch (Exception e) {
-//            return contractDto;
-//        }
     }
 
 }

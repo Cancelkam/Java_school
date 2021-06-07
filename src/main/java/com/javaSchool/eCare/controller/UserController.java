@@ -1,5 +1,6 @@
 package com.javaSchool.eCare.controller;
 
+import com.javaSchool.eCare.model.dto.Tariff.TariffViewForm;
 import com.javaSchool.eCare.model.dto.contract.ContractViewForm;
 import com.javaSchool.eCare.model.dto.user.UserAccountForm;
 import com.javaSchool.eCare.model.entity.Contract;
@@ -11,7 +12,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 @Controller
@@ -52,15 +55,16 @@ public class UserController {
         model.addAttribute("users", usersDto);
         return "/employee/allUsers";
     }
-//    @GetMapping(value = "/client/hello/{id}")
+
+    //    @GetMapping(value = "/client/hello/{id}")
 //    public String findUserById(@PathVariable("id") int id, Model model) {
 //        UserEntity user = userService.getEntityById(id);
 //        model.addAttribute("user",user);
 //        return "/client/hello";
 //    }
     @GetMapping(value = "/client/{id}/yourContract")
-    public String findContractByUserId(@PathVariable("id") int id, Model model){
-    List<Contract> contracts = userService.getContractByUserId(id);
+    public String findContractByUserId(@PathVariable("id") int id, Model model) {
+        List<Contract> contracts = userService.getContractByUserId(id);
         List<ContractViewForm> contractDto = contractService.getContractViewList(contracts);
 //        List<ContractViewForm> contractDto = new ArrayList<ContractViewForm>();
 //        for (Contract contract : contracts) {
@@ -71,5 +75,33 @@ public class UserController {
 
     }
 
+    @GetMapping(value = "employee/editUser/{id}")
+    public String editUser(@PathVariable("id") int id, Model model){
+        UserEntity user = userService.getEntityById(id);
+//                List<UserAccountForm> userDto = userService.getUserViewList((Collection<UserEntity>) user);
+//        List<UserAccountForm> usersDto = new ArrayList<UserAccountForm>();
+//        usersDto.add(new UserAccountForm(user));
+        model.addAttribute("user", user);
+        return "/employee/editUser";
+    }
+
+    @PostMapping(value = "employee/editUser/{id}")
+    public String saveUser(@PathVariable("id") int id, @ModelAttribute("user") @Valid UserAccountForm userAccountForm){
+        userAccountForm.setId(id);
+        userService.updateUser(userAccountForm);
+        return "redirect:/employee/allUsers";
+    }
+
+    @PostMapping(value = "employee/user/{idUser}/contract/{idContract}/unblock")
+    public String unblockContract(@PathVariable int idUser, @PathVariable int idContract) {
+        userService.unblockContractByAdmin(idContract);
+        return "redirect:employee/allContracts";
+    }
+
+    @PostMapping(value = "employee/user/{idUser}/contract/{idContract}/block")
+    public String blockContract(@PathVariable int idUser, @PathVariable int idContract) {
+        userService.blockContractByAdmin(idContract);
+        return "redirect:employee/allContracts";
+    }
 
 }
