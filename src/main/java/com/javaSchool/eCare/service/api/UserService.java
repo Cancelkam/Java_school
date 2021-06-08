@@ -21,7 +21,7 @@ public interface UserService extends GenericService<UserEntity, Integer>{
 
     public List<UserAccountForm> getUserViewList(Collection<UserEntity> users);
 
-    public void updateUser(UserAccountForm user);
+    public void updateUser(UserEntity user);
 
 //    public void blockContract(int user_id,int contract_id);
 //

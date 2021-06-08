@@ -23,34 +23,31 @@
 </header>
 <main>
     <div class="pricing-header p-3 pb-md-4 mx-auto text-center">
-        <h1 class="display-4 fw-normal">Edit Tariff</h1>
-        <p class="fs-5 text-muted">You can edit tariff here:</p>
+        <h1 class="display-4 fw-normal">Edit User</h1>
+        <p class="fs-5 text-muted">You can edit user here:</p>
     </div>
-    <form th:action="@{/employee/editUser/{id} (id = ${id})}"  th:object="${user}" method="post" >
+        <form th:action="@{/employee/editUser/{id} (id = ${id})}"  th:object="${user}" method="post" >
         <div class="g-3">
             <div class="col">
-                <input th:value="${user.name}" type="text" name="title" class="form-control" placeholder="Title" aria-label="First name">
+                <input th:value="${user.fullname}" type="text" name="fullname" class="form-control" placeholder="fullname">
             </div><br>
             <div class="col">
-                <input th:value="${user.address}" type="text" name="price" class="form-control" placeholder="Price" aria-label="Last name">
+                <input th:value="${user.address}" type="text" name="address" class="form-control" placeholder="address">
             </div><br>
             <div class="col">
-                <input th:value="${user.surname}" type="text" name="title" class="form-control" placeholder="Title" aria-label="First name">
+                <input th:value="${user.date}" type="text" name="date" class="form-control" placeholder="date">
             </div><br>
             <div class="col">
-                <input th:value="${user.birth}" type="text" name="price" class="form-control" placeholder="Price" aria-label="Last name">
+                <input th:value="${user.email}" type="text" name="email" class="form-control" placeholder="email">
             </div><br>
             <div class="col">
-                <input th:value="${user.email}" type="text" name="price" class="form-control" placeholder="Price" aria-label="Last name">
+                <input th:value="${user.passport}" type="text" name="passport" class="form-control" placeholder="passport">
             </div><br>
             <div class="col">
-                <input th:value="${user.passport}" type="text" name="price" class="form-control" placeholder="Price" aria-label="Last name">
+                <input th:value="${user.role}" type="text" name="role" class="form-control" placeholder="role">
             </div><br>
             <div class="col">
-                <input th:value="${user.role}" type="text" name="price" class="form-control" placeholder="Price" aria-label="Last name">
-            </div><br>
-            <div class="col">
-                <input th:value="${user.status}" type="text" name="price" class="form-control" placeholder="Price" aria-label="Last name">
+                <input th:value="${user.status}" type="text" name="status" class="form-control" placeholder="status">
             </div><br>
 <!--            <input type="checkbox" th:checked="${}" name="deprecated">Deprecated<br>-->
 <!--            <div class="col">-->

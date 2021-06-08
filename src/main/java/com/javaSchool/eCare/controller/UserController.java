@@ -13,6 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -78,17 +79,19 @@ public class UserController {
     @GetMapping(value = "employee/editUser/{id}")
     public String editUser(@PathVariable("id") int id, Model model){
         UserEntity user = userService.getEntityById(id);
+//        List<UserAccountForm> usersDto = new ArrayList<UserAccountForm>();
+//        usersDto.add(new UserAccountForm(user));
+        UserAccountForm usersDto = new UserAccountForm(user);
+        model.addAttribute("user", usersDto);
 //                List<UserAccountForm> userDto = userService.getUserViewList((Collection<UserEntity>) user);
 //        List<UserAccountForm> usersDto = new ArrayList<UserAccountForm>();
 //        usersDto.add(new UserAccountForm(user));
-        model.addAttribute("user", user);
         return "/employee/editUser";
     }
 
     @PostMapping(value = "employee/editUser/{id}")
-    public String saveUser(@PathVariable("id") int id, @ModelAttribute("user") @Valid UserAccountForm userAccountForm){
-        userAccountForm.setId(id);
-        userService.updateUser(userAccountForm);
+    public String saveUser(@PathVariable("id") int id, @ModelAttribute("user") @Valid UserAccountForm userAccountForm) throws ParseException {
+        userService.updateUser(userAccountForm.toUserEntity());
         return "redirect:/employee/allUsers";
     }
 

@@ -63,7 +63,7 @@ public class GenericRepositoryImpl<Entity, Integer> implements GenericRepository
 
     @Override
     public Entity read(Integer id) {
-        return session.getCurrentSession()
+        return this.session.getCurrentSession()
                 .find(entityClass, id);
     }
 }

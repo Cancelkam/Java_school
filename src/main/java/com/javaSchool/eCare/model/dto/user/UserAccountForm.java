@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 
 
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Set;
 
@@ -38,6 +39,20 @@ public class UserAccountForm {
         this.passport = user.getPassport();
         this.contracts = user.getContract();
         this.address = user.getAddress();
+    }
+
+    public UserEntity toUserEntity() throws ParseException {
+    UserEntity userEntity = new UserEntity();
+    userEntity.setIdUser(this.id);
+    userEntity.setName(this.fullname.split("\\s")[0]);
+    userEntity.setSurname(this.fullname.split("\\s")[1]);
+    userEntity.setBirth(this.dateFormat.parse(this.date));
+    userEntity.setPassport(this.passport);
+    userEntity.setAddress(this.address);
+    userEntity.setEmail(this.email);
+    userEntity.setRole(this.role);
+    userEntity.setStatus(this.status);
+    return userEntity;
     }
 
 }

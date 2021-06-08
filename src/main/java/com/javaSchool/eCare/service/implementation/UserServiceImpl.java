@@ -44,14 +44,8 @@ public class UserServiceImpl implements UserService {
 
     @Override
     @Transactional
-    public void updateUser(UserAccountForm user) {
-        UserEntity newUser = new UserEntity();
-//        newUser.setIdUser(user.getId());
-//        newUser.setName(user.getFullname());
-//        newUser.set(tariff.getPrice());
-//        newUser.setDeprecated(tariff.isDeprecated());
-        createEntity(newUser);
-        userRepository.save(newUser);
+    public void updateUser(UserEntity user) {
+        userRepository.save(user);
     }
 
     @Override
