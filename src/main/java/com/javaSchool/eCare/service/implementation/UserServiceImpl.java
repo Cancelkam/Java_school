@@ -10,6 +10,7 @@ import com.javaSchool.eCare.model.entity.UserEntity;
 import com.javaSchool.eCare.service.api.ContractService;
 import com.javaSchool.eCare.service.api.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -32,9 +33,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void createEntity(UserEntity userEntity) {
-
-    }
+    public void createEntity(UserEntity userEntity) { userRepository.save(userEntity); }
 
     @Override
     @Transactional
@@ -46,6 +45,12 @@ public class UserServiceImpl implements UserService {
     @Transactional
     public void updateUser(UserEntity user) {
         userRepository.save(user);
+    }
+
+    @Override
+    @Transactional
+    public void createNewUser(UserEntity user) {
+        createEntity(user);
     }
 
     @Override

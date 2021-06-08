@@ -8,6 +8,7 @@ import com.javaSchool.eCare.model.entity.UserEntity;
 import com.javaSchool.eCare.service.api.ContractService;
 import com.javaSchool.eCare.service.api.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -94,6 +95,18 @@ public class UserController {
         userService.updateUser(userAccountForm.toUserEntity());
         return "redirect:/employee/allUsers";
     }
+
+    @GetMapping(value = "employee/addUserPage")
+    public String addUserPage() {
+        return "/employee/addUser";
+    }
+
+    @PostMapping(value = "employee/addUser")
+    public String addUser(@ModelAttribute("user") @Valid UserAccountForm userAccountForm) throws ParseException {
+        userService.createNewUser(userAccountForm.toUserEntity());
+        return "redirect:/employee/allUsers";
+    }
+
 
     @PostMapping(value = "employee/user/{idUser}/contract/{idContract}/unblock")
     public String unblockContract(@PathVariable int idUser, @PathVariable int idContract) {

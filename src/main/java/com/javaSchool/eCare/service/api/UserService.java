@@ -23,6 +23,8 @@ public interface UserService extends GenericService<UserEntity, Integer>{
 
     public void updateUser(UserEntity user);
 
+    public void createNewUser(UserEntity user);
+
 //    public void blockContract(int user_id,int contract_id);
 //
 //    public void unBlockContract(int user_id,int contract_id);

@@ -65,10 +65,10 @@
                 <td th:text="${user.email}">N/A</td>
                 <td th:text="${user.status}">N/A</td>
                 <td><a class="btn btn-light" role="button" th:href="@{/employee/editUser/{id} (id=${user.id})}">Edit</a></td>
-                <td><a class="btn btn-light" role="button" href="#">Delete</a></td>
             </tr>
             </tbody>
         </table>
+        <a href="/employee/addUser" class="btn btn-outline-secondary me-2">Add User</a>
     </form>
 </main>
 <script th:src="@{../resources/js/search.js}"></script>
