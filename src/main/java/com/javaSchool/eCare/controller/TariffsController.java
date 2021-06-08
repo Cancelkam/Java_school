@@ -78,7 +78,7 @@ public class TariffsController {
 //        tariffService.deleteEntity(TariffViewForm );
 //    }
 
-    @GetMapping(value = {"employee/editTariff/{id}"})
+    @GetMapping(value = "employee/editTariff/{id}")
     public String editTariff(@PathVariable("id") int id, Model model) {
         Tariff tariff = tariffService.getEntityById(id);
         List<Option> options = optionService.getAvailableOptionsByTariff(id);
