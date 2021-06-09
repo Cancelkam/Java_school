@@ -38,11 +38,26 @@
             <input th:value="${tariff.price}" type="text" name="price" class="form-control" placeholder="Price">
         </div><br>
         <input type="checkbox" th:checked="${tariff.deprecated}" name="deprecated">Deprecated<br>
-        <div class="col">
-        <select class="custom-select" name="select" multiple>
+        <div class="d-flex justify-content-start">
+        <div>
+            <p>All Options:</p>
+        <select name="select" multiple>
+            <option th:each="option: ${options}" th:value="${option.idOption}" th:text="${option.name}"></option>
+        </select>
+        </div><br>
+        <div>
+        <p>Selected Options:</p>
+        <select name="select" multiple>
+            <label class="form-label">Possible Options</label><br>
             <option th:each="option: ${options}" th:value="${option.idOption}" th:text="${option.name}"></option>
         </select>
         </div>
+    </div><br>
+<!--        <div class="col">-->
+<!--            <select class="custom-select" name="select" multiple>-->
+<!--                <option th:each="contract: ${tariff.contracts}" th:value="${contract.idContract}" th:text="${contract.number}"></option>-->
+<!--            </select>-->
+<!--        </div>-->
         <button class="btn btn-outline-secondary me-2" type="submit";>
             Save
         </button>

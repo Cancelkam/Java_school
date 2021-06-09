@@ -27,8 +27,8 @@ public class Tariff {
     @Column(name = "is_deprecated")
     private boolean deprecated;
 
-//    @OneToMany(mappedBy = "tariff", fetch = FetchType.EAGER)
-//    private Set<Contract> contracts;
+    @OneToMany(mappedBy = "tariff")
+    private Set<Contract> contracts;
 
 
 //    @ManyToMany(fetch = FetchType.EAGER, mappedBy = "tariffs")

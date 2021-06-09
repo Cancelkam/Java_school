@@ -18,6 +18,7 @@ import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.Set;
 
 @Controller
 public class UserController {
@@ -83,6 +84,8 @@ public class UserController {
 //        List<UserAccountForm> usersDto = new ArrayList<UserAccountForm>();
 //        usersDto.add(new UserAccountForm(user));
         UserAccountForm usersDto = new UserAccountForm(user);
+//        Set<Contract> contracts = user.getContract();
+//        usersDto.setContracts(contracts);
         model.addAttribute("user", usersDto);
 //                List<UserAccountForm> userDto = userService.getUserViewList((Collection<UserEntity>) user);
 //        List<UserAccountForm> usersDto = new ArrayList<UserAccountForm>();
