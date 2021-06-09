@@ -4,9 +4,7 @@ import lombok.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.Size;
-import java.util.HashSet;
-import java.util.Objects;
-import java.util.Set;
+import java.util.*;
 
 @Entity
 @Table(name = "tariff")
@@ -29,15 +27,30 @@ public class Tariff {
     @Column(name = "is_deprecated")
     private boolean deprecated;
 
-//    @OneToMany(mappedBy = "tariff", cascade = CascadeType.ALL)
+//    @OneToMany(mappedBy = "tariff", fetch = FetchType.EAGER)
 //    private Set<Contract> contracts;
 
-    @ManyToMany(fetch = FetchType.EAGER, mappedBy = "tariffs")
-    private Set<Option> options = new HashSet<>();
 
-    public void addOption(Option option){
-        options.add(option);
-        option.getTariffs().add(this);
+//    @ManyToMany(fetch = FetchType.EAGER, mappedBy = "tariffs")
+//    private Set<Option> options = new HashSet<>();
+//
+//    public void addOption(Option option){
+//        options.add(option);
+//        option.getTariffs().add(this);
+//    }
+
+    @ManyToMany(cascade={CascadeType.PERSIST,CascadeType.MERGE, CascadeType.REFRESH,CascadeType.DETACH},fetch = FetchType.EAGER)
+    @JoinTable(name = "tariff_options", joinColumns = @JoinColumn(name = "idTariff"),
+            inverseJoinColumns = @JoinColumn(name = "idOption"))
+    private Set<Option> optionIdList =new HashSet<>();
+
+
+    public void addOptionToTariff(Option option)
+    {
+        if(optionIdList==null)
+            optionIdList=new HashSet<> ();
+        optionIdList.add(option);
+
     }
 
     @Override

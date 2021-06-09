@@ -40,7 +40,7 @@
         <input type="checkbox" th:checked="${tariff.deprecated}" name="deprecated">Deprecated<br>
         <div class="col">
         <select class="custom-select" name="select" multiple>
-            <option th:each="option: ${options}" th:value="${option.idOption}" th:name="${option.name}"></option>
+            <option th:each="option: ${options}" th:value="${option.idOption}" th:text="${option.name}"></option>
         </select>
         </div>
         <button class="btn btn-outline-secondary me-2" type="submit";>

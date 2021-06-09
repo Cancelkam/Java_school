@@ -7,9 +7,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import javax.validation.constraints.Size;
-import java.util.HashSet;
-import java.util.Objects;
-import java.util.Set;
+import java.util.*;
 
 @Entity
 @Table(name = "options")
@@ -32,15 +30,28 @@ public class Option {
     @Column(name = "conn_cost", nullable = false)
     private double conn_cost;
 
-    @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(name = "Tariff_Options",
-            joinColumns = @JoinColumn(name = "idOption"),
-            inverseJoinColumns = @JoinColumn(name = "idTariff"))
-    private Set<Tariff> tariffs = new HashSet<>();
+//    @ManyToMany(fetch = FetchType.EAGER)
+//    @JoinTable(name = "Tariff_Options",
+//            joinColumns = @JoinColumn(name = "idOption"),
+//            inverseJoinColumns = @JoinColumn(name = "idTariff"))
+//    private Set<Tariff> tariffs = new HashSet<>();
+//
+//    public void addTariff(Tariff tariff) {
+//        tariffs.add(tariff);
+//        tariff.getOptions().add(this);
+//    }
 
-    public void addTariff(Tariff tariff) {
-        tariffs.add(tariff);
-        tariff.getOptions().add(this);
+    @ManyToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+    @JoinTable(name = "tariff_options",joinColumns = @JoinColumn(name="idOption"),
+            inverseJoinColumns = @JoinColumn(name = "idTariff")
+    )
+    private List<Tariff> tariffsList;
+
+    public void addTariffToOption(Tariff tariff)
+    {
+        if(tariffsList==null)
+            tariffsList=new ArrayList<>();
+        tariffsList.add(tariff);
     }
 
     @Override
