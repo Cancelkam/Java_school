@@ -20,13 +20,24 @@ public class ContractServiceImpl implements ContractService {
     private final ContractRepository contractRepository;
 
     @Autowired
-    public ContractServiceImpl(ContractRepository contractRepository){
+    public ContractServiceImpl(ContractRepository contractRepository) {
         this.contractRepository = contractRepository;
     }
 
     @Override
-    public void createEntity(Contract contract) {
+    public Contract createEntity(String number) {
+        Contract contract = new Contract();
+        contract.setNumber(number);
+        return contract;
+    }
 
+    @Override
+    @Transactional
+    public void addContract(Contract contract) {
+        contractRepository.add(contract);
+    }
+
+    public void createEntity(Contract contract) {
     }
 
     @Override
@@ -54,10 +65,12 @@ public class ContractServiceImpl implements ContractService {
     @Transactional
     public List<ContractViewForm> getContractViewList(Collection<Contract> contracts) {
         List<ContractViewForm> contractDto = new ArrayList<ContractViewForm>();
-            for (Contract contract : contracts) {
-                contractDto.add(new ContractViewForm(contract));
-            }
-            return contractDto;
+        for (Contract contract : contracts) {
+            contractDto.add(new ContractViewForm(contract));
+        }
+        return contractDto;
     }
+
+
 
 }

@@ -104,6 +104,8 @@ public class UserController {
     @PostMapping(value = "employee/addUser")
     public String addUser(@ModelAttribute("user") @Valid UserAccountForm userAccountForm) throws ParseException {
         userService.createNewUser(userAccountForm.toUserEntity());
+       Contract contractNew = contractService.createEntity(userAccountForm.getContract_number());
+       contractService.addContract(contractNew);
         return "redirect:/employee/allUsers";
     }
 

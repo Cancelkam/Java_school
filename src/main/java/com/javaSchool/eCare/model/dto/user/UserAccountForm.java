@@ -24,7 +24,10 @@ public class UserAccountForm {
     private DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
     private String passport;
     private String address;
+    private Boolean blocked;
+    private Boolean blocked_by_admin;
     private Set<Contract> contracts;
+    private String contract_number;
     private Status status;
     private Role role;
 

@@ -24,10 +24,10 @@ public class ContractRepositoryImpl extends GenericRepositoryImpl<Contract,Integ
                 .createQuery("FROM Contract").list();
     }
 
-//    @Override
-//    public void add(Contract contract) {
-//        sessionFactory.getCurrentSession().save(contract);
-//    }
+    @Override
+    public void add(Contract contract) {
+        sessionFactory.getCurrentSession().persist(contract);
+    }
 //
 //    @Override
 //    public void update(Contract contract) {

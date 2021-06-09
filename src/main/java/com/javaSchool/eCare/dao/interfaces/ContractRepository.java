@@ -7,4 +7,5 @@ import java.util.List;
 
 public interface ContractRepository extends GenericRepository<Contract, Integer> {
 
+    void add(Contract contract);
 }

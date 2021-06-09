@@ -12,4 +12,9 @@ public interface ContractService extends GenericService<Contract, Integer> {
 
     public List<ContractViewForm> getContractViewList(Collection<Contract> contracts);
 
+    public Contract createEntity(String number);
+
+    public void addContract(Contract contract);
+
+
 }
