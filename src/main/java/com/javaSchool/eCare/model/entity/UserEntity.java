@@ -31,7 +31,6 @@ public class UserEntity {
     private String surname;
 
     @Column(name = "name", nullable = false)
-    @Basic
     @Size(min = 1, max = 45)
     private String name;
 
@@ -68,6 +67,6 @@ public class UserEntity {
     private Status status;
 
 
-    @OneToMany(mappedBy = "userEntity", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "userEntity")
     private Set<Contract> contract;
 }

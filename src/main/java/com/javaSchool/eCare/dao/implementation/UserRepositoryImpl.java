@@ -21,7 +21,7 @@ public class UserRepositoryImpl extends GenericRepositoryImpl<UserEntity,Integer
 //    public void setSessionFactory(SessionFactory sessionFactory) {
 //        this.session = sessionFactory;
 //    }
-
+    @Override
     public UserEntity findByEmail(String email) {
         return (UserEntity) session.getCurrentSession()
                 .createQuery("FROM UserEntity AS u WHERE u.email = :email")

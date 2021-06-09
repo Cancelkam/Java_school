@@ -35,7 +35,7 @@ public class Contract {
     @Column(name = "is_blocked_by_admin")
     private boolean blocked_by_admin;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
     private UserEntity userEntity;
 

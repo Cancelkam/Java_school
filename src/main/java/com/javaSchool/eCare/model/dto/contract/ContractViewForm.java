@@ -18,7 +18,7 @@ public class ContractViewForm {
         this.idContract=contract.getIdContract();
         this.number=contract.getNumber();
         this.tariff_title=contract.getTariff().getTitle();
-//        this.user_email=contract.getUserEntity().getEmail(); Почему то не работает ????
+        this.user_email=contract.getUserEntity().getEmail();
         this.blocked=contract.isBlocked();
         this.blocked_by_admin=contract.isBlocked_by_admin();
 
