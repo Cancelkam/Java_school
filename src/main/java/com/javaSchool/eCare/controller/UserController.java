@@ -78,6 +78,14 @@ public class UserController {
 
     }
 
+    @GetMapping(value = "/client/{id}/yourTariff")
+    public String findTariffByUserId(@PathVariable("id") int id, Model model) {
+        List<Contract> contracts = userService.getContractByUserId(id);
+        List<ContractViewForm> contractDto = contractService.getContractViewList(contracts);
+        model.addAttribute("contracts", contractDto);
+        return "client/yourTariff";
+    }
+
     @GetMapping(value = "employee/editUser/{id}")
     public String editUser(@PathVariable("id") int id, Model model){
         UserEntity user = userService.getEntityById(id);

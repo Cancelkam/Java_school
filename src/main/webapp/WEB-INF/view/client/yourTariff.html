@@ -2,12 +2,12 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Contract</title>
+    <title>Tariff</title>
   <link th:href="@{/resources/css/bootstrap.min.css}" rel="stylesheet">
   <link th:href="@{/resources/css/index.css}" rel="stylesheet">
 </head>
 <body>
-<header class="p-3 bg-dark text-white">
+<header>
   <div class="container">
     <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
       <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
@@ -20,7 +20,6 @@
       </div>
     </div>
   </div>
-
 </header>
 
 <main>
@@ -31,29 +30,19 @@
   <table  class="table table-hover">
     <thead>
     <tr>
-      <th scope="col">Number</th>
-      <th scope="col">Tariff</th>
-      <th scope="col">Blocked</th>
-      <th scope="col">Blocked_by_admin</th>
+      <th scope="col">Title</th>
+      <th scope="col">Price</th>
+      <th scope="col">Options</th>
     </tr>
     </thead>
     <tbody>
     <tr th:each="contract: ${contracts}">
-      <td th:text="${contract.number}">N/A</td>
       <td th:text="${contract.tariff_title}">N/A</td>
-      <td th:text="${contract.isBlocked() } ? 'yes' : 'no'"></td>
-      <td th:text="${contract.isBlocked_by_admin() } ? 'yes' : 'no'">ff</td>
+      <td th:text="${contract.tariff_price}"></td>
+      <td th:each="option: ${contract.options}" th:value="${option.idOption}" th:text="${option.name}">N/A</td>
     </tr>
-
-    <input type="checkbox" th:checked="${contract.blocked}" name="blocked">Blocked<br>
     </tbody>
   </table>
-<!--  <a href="/employee/addContract" class="w-50 btn btn-primary btn-lg" type="submit" style="margin-left: auto; margin-right: auto">-->
-<!--    Add Contract-->
-<!--  </a>-->
-  <!--    </form>-->
 </main>
-<!--<script th:src="@{../resources/js/search.js}"></script>-->
-
 </body>
 </html>
