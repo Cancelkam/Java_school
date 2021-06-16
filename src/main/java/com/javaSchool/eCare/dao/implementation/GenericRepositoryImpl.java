@@ -5,6 +5,7 @@ import com.javaSchool.eCare.dao.interfaces.GenericRepository;
 import com.javaSchool.eCare.dao.interfaces.TariffRepository;
 import com.javaSchool.eCare.model.entity.Tariff;
 import org.hibernate.SessionFactory;
+import org.hibernate.query.Query;
 import org.hibernate.sql.Select;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -33,7 +34,7 @@ public class GenericRepositoryImpl<Entity, Integer> implements GenericRepository
 
     @Override
     public List<Entity> findAll() {
-                return session.getCurrentSession()
+        return session.getCurrentSession()
                 .createQuery("from " + entityClass.getName(), entityClass)
                 .getResultList();
     }
@@ -46,6 +47,13 @@ public class GenericRepositoryImpl<Entity, Integer> implements GenericRepository
     @Override
     public void delete(Entity entity) {
         session.getCurrentSession().delete(session.getCurrentSession().merge(entity));
+    }
+
+    @Override
+    public List<Entity> getLimit(int limit) {
+       Query<Entity> query = session.getCurrentSession().createQuery("from " + entityClass.getName() + "c  order by c.id desc", entityClass);
+       query.setMaxResults(limit);
+       return query.list();
     }
 
     //    @Override

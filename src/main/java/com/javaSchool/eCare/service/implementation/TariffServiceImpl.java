@@ -110,4 +110,10 @@ public class TariffServiceImpl implements TariffService {
         tariff.setDeprecated(true);
         updateEntity(tariff);
     }
+
+    @Override
+    @Transactional
+    public List<Tariff> getLimit(int limit) {
+        return tariffRepository.getLimit(limit);
+    }
 }

@@ -28,5 +28,7 @@ public interface TariffService extends GenericService<Tariff, Integer>{
 //
     void makeTariffDeprecated(int id);
 
+    List<Tariff> getLimit(int limit);
+
 
 }
