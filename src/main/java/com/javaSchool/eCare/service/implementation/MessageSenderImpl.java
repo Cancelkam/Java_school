@@ -20,6 +20,7 @@ public class MessageSenderImpl implements MessageSender {
 
         try {
             QueueConnection connection = (QueueConnection) connectionFactory.createConnection();
+            connection.start();
             QueueSession session = connection.createQueueSession(false, Session.AUTO_ACKNOWLEDGE);
             Queue queue = session.createQueue(environment.getProperty("spring.activemq.destination"));
             MessageProducer messageProducer = session.createProducer(queue);
