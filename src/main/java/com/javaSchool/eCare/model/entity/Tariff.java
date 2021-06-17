@@ -1,5 +1,8 @@
 package com.javaSchool.eCare.model.entity;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.annotations.Expose;
 import lombok.*;
 
 import javax.persistence.*;
@@ -17,10 +20,12 @@ public class Tariff {
     @Column(name = "idTariff")
     private int idTariff;
 
+    @Expose
     @Column(name = "title", nullable = false)
     @Size(min = 1, max = 45)
     private String title;
 
+    @Expose
     @Column(name = "price", nullable = false)
     private double price;
 
@@ -64,5 +69,10 @@ public class Tariff {
     @Override
     public int hashCode() {
         return Objects.hash(idTariff);
+    }
+
+    public String convertToJson() {
+        Gson gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create();
+        return gson.toJson(this);
     }
 }
