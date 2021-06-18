@@ -7,6 +7,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import javax.validation.constraints.Size;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -45,4 +46,11 @@ public class Contract {
 //
 //    @ManyToMany(mappedBy = "contracts")
 //    private Set<Option> options;
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "selected_options",
+            joinColumns = @JoinColumn(name = "idContract"),
+            inverseJoinColumns = @JoinColumn(name = "idOption")
+    )
+    private Set<Option> options = new HashSet<>();
 }

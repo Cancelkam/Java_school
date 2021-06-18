@@ -41,8 +41,9 @@ public class ContractServiceImpl implements ContractService {
     }
 
     @Override
+    @Transactional
     public Contract getEntityById(Integer id) {
-        return null;
+        return contractRepository.read(id);
     }
 
     @Override

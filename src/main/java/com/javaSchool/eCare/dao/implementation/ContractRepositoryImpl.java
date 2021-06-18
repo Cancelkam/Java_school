@@ -11,22 +11,22 @@ import java.util.List;
 @Repository
 public class ContractRepositoryImpl extends GenericRepositoryImpl<Contract,Integer> implements ContractRepository {
 
-    private SessionFactory sessionFactory;
-
-    @Autowired
-    public void setSessionFactory(SessionFactory sessionFactory) {
-        this.sessionFactory = sessionFactory;
-    }
+//    private SessionFactory sessionFactory;
+//
+//    @Autowired
+//    public void setSessionFactory(SessionFactory sessionFactory) {
+//        this.sessionFactory = sessionFactory;
+//    }
 
     @Override
     public List<Contract> findAll() {
-        return sessionFactory.getCurrentSession()
+        return session.getCurrentSession()
                 .createQuery("FROM Contract").list();
     }
 
     @Override
     public void add(Contract contract) {
-        sessionFactory.getCurrentSession().persist(contract);
+        session.getCurrentSession().persist(contract);
     }
 //
 //    @Override

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>editContract</title>
+  <link th:href="@{/resources/css/bootstrap.min.css}" rel="stylesheet">
+  <link th:href="@{/resources/css/index.css}" rel="stylesheet">
+</head>
+<body>
+<header class="p-3 bg-dark text-white">
+  <div class="container">
+    <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+      <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
+        <svg class="bi me-2" width="40" height="32">
+          <use xlink:href="#bootstrap"/>
+        </svg>
+      </a>
+      <div class="text-end">
+        <a href="/employee/allContracts" class="btn btn-outline-light me-2">Back</a>
+      </div>
+    </div>
+  </div>
+</header>
+<main>
+  <div class="pricing-header p-3 pb-md-4 mx-auto text-center">
+    <h1 class="display-4 fw-normal">Edit Contract</h1>
+    <p class="fs-5 text-muted">You can edit contract here:</p>
+  </div>
+  <form th:action="@{/employee/editContract/{id} (id = ${id})}"  method="post" >
+    <div class="g-3">
+      <div class="col">
+        <label class="form-label">Number</label>
+        <input th:value="${contract.number}" type="text" name="number" class="form-control" placeholder="Number" readonly>
+      </div><br>
+      <div class="col">
+        <label class="form-label">User</label>
+        <input th:value="${contract.userEntity.email}" type="text" name="user" class="form-control" placeholder="User" readonly>
+      </div><br>
+      <div class="col">
+        <label class="form-label">Tariff</label>
+        <input th:value="${contract.tariff.title}" type="text" name="tariff" class="form-control" placeholder="Tariff">
+      </div><br>
+      <div>
+        <p>Options:</p>
+        <select name="options" multiple>
+          <option th:each="option: ${contract.tariff.OptionIdList}" th:value="${option.idOption}" th:text="${option.name}" th:selected="${option.idOption==1}"></option>
+        </select>
+      </div> <br>
+      <button class="btn btn-outline-secondary me-2" type="submit";>
+        Save
+      </button>
+    </div>
+  </form>
+</main>
+</body>
+</html>
