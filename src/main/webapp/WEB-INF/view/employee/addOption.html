@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>addOption</title>
+  <link th:href="@{../resources/css/bootstrap.min.css}" rel="stylesheet">
+  <link th:href="@{../resources/css/index.css}" rel="stylesheet">
+</head>
+<body>
+<header class="p-3 bg-dark text-white">
+  <div class="container">
+    <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+      <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
+        <svg class="bi me-2" width="40" height="32">
+          <use xlink:href="#bootstrap"/>
+        </svg>
+      </a>
+      <div class="text-end">
+        <a href="/employee/allOptions" class="btn btn-outline-light me-2">Back</a>
+      </div>
+    </div>
+  </div>
+</header>
+<main>
+  <div class="pricing-header p-3 pb-md-4 mx-auto text-center">
+    <h1 class="display-4 fw-normal">Add Option</h1>
+    <p class="fs-5 text-muted">You can create a new option here:</p>
+  </div>
+  <form th:action="@{/employee/addOption}" th:object="${optionViewForm}" method="post" >
+    <div class="g-3">
+      <div class="col">
+        <label class="form-label">Title</label>
+        <input type="text" name="name" class="form-control" placeholder="Title" aria-label="First name">
+      </div>
+      <div class="col">
+        <label class="form-label">Price</label>
+        <input type="text" name="cost" class="form-control" placeholder="Price" aria-label="Last name">
+      </div>
+      <div class="col">
+        <label class="form-label">Connection Price</label>
+        <input type="text" name="conn_cost" class="form-control" placeholder="Price" aria-label="Last name">
+      </div>
+      <button class="btn btn-outline-secondary me-2" type="submit" style="margin-left: auto; margin-right: auto">
+        Add
+      </button>
+    </div>
+  </form>
+</main>
+</body>
+</html>

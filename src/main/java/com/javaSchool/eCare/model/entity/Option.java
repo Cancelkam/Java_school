@@ -30,27 +30,15 @@ public class Option {
     @Column(name = "conn_cost", nullable = false)
     private double conn_cost;
 
-//    @ManyToMany(fetch = FetchType.EAGER)
-//    @JoinTable(name = "Tariff_Options",
-//            joinColumns = @JoinColumn(name = "idOption"),
-//            inverseJoinColumns = @JoinColumn(name = "idTariff"))
-//    private Set<Tariff> tariffs = new HashSet<>();
-//
-//    public void addTariff(Tariff tariff) {
-//        tariffs.add(tariff);
-//        tariff.getOptions().add(this);
-//    }
-
-    @ManyToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
-    @JoinTable(name = "tariff_options",joinColumns = @JoinColumn(name="idOption"),
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinTable(name = "tariff_options", joinColumns = @JoinColumn(name = "idOption"),
             inverseJoinColumns = @JoinColumn(name = "idTariff")
     )
     private List<Tariff> tariffsList;
 
-    public void addTariffToOption(Tariff tariff)
-    {
-        if(tariffsList==null)
-            tariffsList=new ArrayList<>();
+    public void addTariffToOption(Tariff tariff) {
+        if (tariffsList == null)
+            tariffsList = new ArrayList<>();
         tariffsList.add(tariff);
     }
 
@@ -67,7 +55,7 @@ public class Option {
         return Objects.hash(idOption);
     }
 
-    //    @ManyToMany(fetch = FetchType.EAGER)
+//    @ManyToMany(fetch = FetchType.EAGER)
 //    @JoinTable(name = "Contract_Options",
 //            joinColumns = @JoinColumn(name = "idOption"),
 //            inverseJoinColumns = @JoinColumn(name = "idContract")
@@ -81,10 +69,10 @@ public class Option {
 //            inverseJoinColumns = @JoinColumn(name = "associatedoptionid", referencedColumnName = "idOption"))
 //    private Set<Option> associatedOptions;
 //
-//    @ManyToMany(fetch = FetchType.EAGER)
-//    @JoinTable(
-//            name = "incompatible_options",
-//            joinColumns = @JoinColumn(name = "optionId", referencedColumnName = "idOption"),
-//            inverseJoinColumns = @JoinColumn(name = "incompatibleoptionid", referencedColumnName = "idOption"))
-//    private Set<Option> incompatibledOptions;
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(
+            name = "incompatible_options",
+            joinColumns = @JoinColumn(name = "optionId", referencedColumnName = "idOption"),
+            inverseJoinColumns = @JoinColumn(name = "incompatibleoptionid", referencedColumnName = "idOption"))
+    private Set<Option> incompatibledOptions;
 }

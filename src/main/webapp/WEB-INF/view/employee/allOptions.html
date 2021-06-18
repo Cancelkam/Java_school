@@ -23,8 +23,8 @@
 </header>
 <main>
   <div class="pricing-header p-3 pb-md-4 mx-auto text-center">
-    <h1 class="display-4 fw-normal">Clients</h1>
-    <p class="fs-5 text-muted">All clients are here:</p>
+    <h1 class="display-4 fw-normal">Options</h1>
+    <p class="fs-5 text-muted">All options are here:</p>
   </div>
   <form th:action="@{/allOptions}" th:object="${options}" method="post">
     <table class="table table-hover">
@@ -41,6 +41,7 @@
         <td th:text="${option.cost}">N/A</td>
         <td th:text="${option.conn_cost}">N/A</td>
         <td><a class="btn btn-light" role="button" th:href="@{/employee/editOption/{id} (id=${option.idOption})}">Edit</a></td>
+        <td> <a class="btn btn-light" role="button" th:href="@{/employee/editOption/{id}/delete (id=${option.idOption})}">Delete</a></td>
       </tr>
       </tbody>
     </table>

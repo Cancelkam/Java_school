@@ -39,11 +39,11 @@ public class OptionRepositoryImpl extends GenericRepositoryImpl<Option,Integer> 
 //        return null;
 //        }
 //
-    @Override
-    @Transactional
-    public List<Option> getAvailableOptionsByTariff(Integer id) {
-        return this.session.getCurrentSession()
-                .createQuery("select o from Option as o join Tariff as t on t.idTariff=:id")
-                .setParameter("id", id).getResultList();
-    }
+//    @Override
+//    @Transactional
+//    public List<Option> getAvailableOptionsByTariff(Integer id) {
+//        return this.session.getCurrentSession()
+//                .createQuery("select o from Option as o join Tariff as t on t.idTariff=:id")
+//                .setParameter("id", id).getResultList();
+//    }
 }
