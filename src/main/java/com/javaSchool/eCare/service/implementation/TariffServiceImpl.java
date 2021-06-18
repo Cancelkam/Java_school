@@ -86,7 +86,7 @@ public class TariffServiceImpl implements TariffService {
         newTariff.setPrice(tariff.getPrice());
         newTariff.setDeprecated(tariff.isDeprecated());
         createEntity(newTariff);
-        tariffRepository.save(newTariff);
+//        tariffRepository.save(newTariff);
     }
 
 //    @Override

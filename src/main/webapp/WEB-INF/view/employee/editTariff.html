@@ -7,16 +7,16 @@
     <link th:href="@{/resources/css/index.css}" rel="stylesheet">
 </head>
 <body>
-<header>
+<header class="p-3 bg-dark text-white">
     <div class="container">
-        <div class="align-items-center justify-content-center justify-content-lg-start">
-            <a href="/" class="align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
+        <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+            <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
                 <svg class="bi me-2" width="40" height="32">
                     <use xlink:href="#bootstrap"/>
                 </svg>
             </a>
             <div class="text-end">
-                <a href="/employee/hello" class="btn btn-outline-light me-2">Back</a>
+                <a href="/employee/tariffs" class="btn btn-outline-light me-2">Back</a>
             </div>
         </div>
     </div>
@@ -38,21 +38,21 @@
             <input th:value="${tariff.price}" type="text" name="price" class="form-control" placeholder="Price">
         </div><br>
         <input type="checkbox" th:checked="${tariff.deprecated}" name="deprecated">Deprecated<br>
-        <div class="d-flex justify-content-start">
+<!--        <div class="d-flex justify-content-start">-->
+
+<!--        <div>-->
+<!--            <p>Available Options:</p>-->
+<!--        <select name="available" multiple>-->
+<!--            <option th:each="option: ${options}" th:value="${option.idOption}" th:text="${option.name}"></option>-->
+<!--        </select>-->
+<!--        </div><br>-->
         <div>
-            <p>All Options:</p>
-        <select name="select" multiple>
-            <option th:each="option: ${options}" th:value="${option.idOption}" th:text="${option.name}"></option>
+        <p>Options:</p>
+        <select name="options" multiple>
+            <option th:each="option: ${options}" th:value="${option.idOption}" th:text="${option.name}" th:selected="${tariff.getOptionIdList().contains(option)}"></option>
         </select>
-        </div><br>
-        <div>
-        <p>Selected Options:</p>
-        <select name="select" multiple>
-            <label class="form-label">Possible Options</label><br>
-            <option th:each="option: ${options}" th:value="${option.idOption}" th:text="${option.name}"></option>
-        </select>
-        </div>
-    </div><br>
+        </div> <br>
+<!--    </div><br>-->
 <!--        <div class="col">-->
 <!--            <select class="custom-select" name="select" multiple>-->
 <!--                <option th:each="contract: ${tariff.contracts}" th:value="${contract.idContract}" th:text="${contract.number}"></option>-->

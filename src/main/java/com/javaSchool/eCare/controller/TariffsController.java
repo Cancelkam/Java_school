@@ -88,9 +88,9 @@ public class TariffsController {
     @GetMapping(value = "employee/editTariff/{id}")
     public String editTariff(@PathVariable("id") int id, Model model) {
         Tariff tariff = tariffService.getEntityById(id);
-//        List<Option> options = optionService.getAvailableOptionsByTariff(id);
+        List<Option> options = optionService.findAll();
         model.addAttribute("tariff", tariff);
-        model.addAttribute("options", tariff.getOptionIdList());
+        model.addAttribute("options", options);
         return "/employee/editTariff";
     }
 
