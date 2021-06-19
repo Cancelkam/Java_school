@@ -7,16 +7,11 @@
   <link th:href="@{/resources/css/index.css}" rel="stylesheet">
 </head>
 <body>
-<header>
+<header class="p-3 bg-dark text-white">
   <div class="container">
     <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-      <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
-        <svg class="bi me-2" width="40" height="32">
-          <use xlink:href="#bootstrap"/>
-        </svg>
-      </a>
       <div class="text-end">
-        <a href="/employee/hello" class="btn btn-outline-light me-2">Back</a>
+        <a href="/employee/hello" class="btn btn-lg btn-outline-light me-2">Back</a>
       </div>
     </div>
   </div>
@@ -27,12 +22,14 @@
     <p class="fs-5 text-muted">All options are here:</p>
   </div>
   <form th:action="@{/allOptions}" th:object="${options}" method="post">
-    <table class="table table-hover">
-      <thead>
+    <table class="table table-hover text-center border">
+      <thead class="table-secondary">
       <tr>
         <th scope="col">Title</th>
         <th scope="col">Price</th>
         <th scope="col">Connection price</th>
+        <th scope="col"></th>
+        <th scope="col"></th>
       </tr>
       </thead>
       <tbody>
@@ -45,7 +42,7 @@
       </tr>
       </tbody>
     </table>
-    <a href="/employee/addOption" class="btn btn-outline-secondary me-2">Add Option</a>
+    <a href="/employee/addOption" class="btn b tn-lg btn-warning me-2">Add Option</a>
   </form>
 </main>
 </body>

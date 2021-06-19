@@ -48,7 +48,7 @@
 <!--        </div><br>-->
         <div>
         <p>Options:</p>
-        <select name="options" multiple>
+        <select multiple>
             <option th:each="option: ${options}" th:value="${option.idOption}" th:text="${option.name}" th:selected="${tariff.getOptionIdList().contains(option)}"></option>
         </select>
         </div> <br>

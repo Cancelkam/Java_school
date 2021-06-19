@@ -7,16 +7,11 @@
     <link th:href="@{/resources/css/index.css}" rel="stylesheet">
 </head>
 <body>
-<header>
+<header class="p-3 bg-dark text-white">
     <div class="container">
-        <div class="align-items-center justify-content-center justify-content-lg-start">
-            <a href="/" class="align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
-                <svg class="bi me-2" width="40" height="32">
-                    <use xlink:href="#bootstrap"/>
-                </svg>
-            </a>
+        <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
             <div class="text-end">
-                <a href="/employee/hello" class="btn btn-outline-light me-2">Back</a>
+                <a href="/employee/allOptions" class="btn btn-lg btn-outline-light me-2">Back</a>
             </div>
         </div>
     </div>
@@ -27,7 +22,7 @@
         <p class="fs-5 text-muted">You can edit option here:</p>
     </div>
     <form th:action="@{/employee/editOption/{id} (id = ${id})}" method="post" >
-        <div class="g-3">
+        <div class="form-control-lg">
             <div class="col">
                 <label class="form-label">Title</label>
                 <input th:value="${option.name}" type="text" name="name" class="form-control" placeholder="Title">
@@ -39,8 +34,10 @@
             <div class="col">
                 <label class="form-label">Connection Price</label>
                 <input th:value="${option.conn_cost}" type="text" name="conn_cost" class="form-control" placeholder="Price">
-            </div><br>
-            <button class="btn btn-outline-secondary me-2" type="submit";>
+            </div>
+            <br>
+
+            <button class="btn btn-lg btn-warning" type="submit";>
                 Save
             </button>
         </div>

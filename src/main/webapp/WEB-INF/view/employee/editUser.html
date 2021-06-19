@@ -10,11 +10,6 @@
 <header class="p-3 bg-dark text-white">
     <div class="container">
         <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-            <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
-                <svg class="bi me-2" width="40" height="32">
-                    <use xlink:href="#bootstrap"/>
-                </svg>
-            </a>
             <div class="text-end">
                 <a href="/employee/allUsers" class="btn btn-outline-light me-2">Back</a>
             </div>
@@ -53,15 +48,21 @@
                 <input th:value="${user.role}" type="text" name="role" class="form-control" placeholder="role">
             </div><br>
             <div class="col">
-                <label class="form-label">Contract Number</label>
-            <select class="custom-select" name="select" multiple>
-                <option th:each="contract : ${user.contracts}" th:value="${contract.idContract}" th:text="${contract.number}"></option>
-            </select>
-        </div><br>
-            <div class="col">
                 <label class="form-label">Status</label>
                 <input th:value="${user.status}" type="text" name="status" class="form-control" placeholder="status">
-            </div><br>
+            </div>
+            <br>
+<!--            <div class="col">-->
+<!--                <label class="form-label">Contract Number</label>-->
+<!--            <select class="custom-select" name="select" multiple>-->
+<!--                <option th:each="contract : ${user.contracts}" th:value="${contract.idContract}" th:text="${contract.number}"></option>-->
+<!--            </select>-->
+<!--        </div><br>-->
+            <button class="btn btn-lg btn-warning" type="submit">
+                Save
+            </button>
+
+
 
 <!--            <input type="checkbox" th:checked="${user.contracts.blocked}" name="blocked">Block/Unblock<br>-->
 <!--            <div class="col">-->
@@ -69,9 +70,7 @@
 <!--                    <option th:each="option: ${options}" th:value="${option.idOption}" th:name="${option.name}"></option>-->
 <!--                </select>-->
 
-            <button class="btn btn-outline-secondary me-2" type="submit">
-                Save
-            </button>
+
         </div>
     </form>
 </main>
