@@ -68,7 +68,7 @@ public class OptionController {
         return "redirect:/employee/allOptions";
     }
 
-    @GetMapping(value = "employee/editOptions/{id}/delete")
+    @GetMapping(value = "employee/editOption/{id}/delete")
     public String deleteOption(@PathVariable int id) {
         Option option = optionService.getEntityById(id);
         optionService.deleteEntity(option);
