@@ -72,6 +72,11 @@ public class TariffServiceImpl implements TariffService {
     }
 
     @Override
+    public void saveEntity(Tariff tariff) {
+
+    }
+
+    @Override
     @Transactional
     public List<TariffViewForm> getTariffViewList(Collection<Tariff> tariffs) {
         return null;

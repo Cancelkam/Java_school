@@ -70,6 +70,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public void saveEntity(UserEntity userEntity) {
+
+    }
+
+    @Override
     @Transactional
     public UserEntity getUserByNumber(String number) {
         return userRepository.getUserByNumber(number);

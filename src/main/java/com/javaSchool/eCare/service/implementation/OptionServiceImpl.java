@@ -39,6 +39,7 @@ public class OptionServiceImpl implements OptionService {
     }
 
     @Override
+    @Transactional
     public void deleteEntity(Option option) {
         optionRepository.delete(option);
     }
@@ -47,6 +48,11 @@ public class OptionServiceImpl implements OptionService {
     @Transactional
     public List<Option> findAll() {
         return optionRepository.findAll();
+    }
+
+    @Override
+    public void saveEntity(Option option) {
+
     }
 
 //    @Override

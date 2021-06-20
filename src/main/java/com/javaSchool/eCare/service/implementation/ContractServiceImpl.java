@@ -64,6 +64,12 @@ public class ContractServiceImpl implements ContractService {
 
     @Override
     @Transactional
+    public void saveEntity(Contract contract) {
+        contractRepository.save(contract);
+    }
+
+    @Override
+    @Transactional
     public List<ContractViewForm> getContractViewList(Collection<Contract> contracts) {
         List<ContractViewForm> contractDto = new ArrayList<ContractViewForm>();
         for (Contract contract : contracts) {
