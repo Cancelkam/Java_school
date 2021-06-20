@@ -8,6 +8,7 @@ import lombok.Setter;
 import javax.persistence.*;
 import javax.validation.constraints.Size;
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 @Entity
@@ -53,4 +54,22 @@ public class Contract {
             inverseJoinColumns = @JoinColumn(name = "idOption")
     )
     private Set<Option> options = new HashSet<>();
+
+    public void addOption(Option option) {
+        options.add(option);
+        option.getContracts().add(this);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Contract contract = (Contract) o;
+        return idContract == contract.idContract;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(idContract);
+    }
 }

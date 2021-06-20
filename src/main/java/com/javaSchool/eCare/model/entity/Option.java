@@ -55,12 +55,17 @@ public class Option {
         return Objects.hash(idOption);
     }
 
-//    @ManyToMany(fetch = FetchType.EAGER)
-//    @JoinTable(name = "Contract_Options",
-//            joinColumns = @JoinColumn(name = "idOption"),
-//            inverseJoinColumns = @JoinColumn(name = "idContract")
-//    )
-//    private Set<Contract> contracts;
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "selected_options",
+            joinColumns = @JoinColumn(name = "idOption"),
+            inverseJoinColumns = @JoinColumn(name = "idContract")
+    )
+    private Set<Contract> contracts;
+
+    public void addContract(Contract contract) {
+        contracts.add(contract);
+        contract.getOptions().add(this);
+    }
 
 //    @ManyToMany(fetch = FetchType.EAGER)
 //    @JoinTable(
