@@ -23,7 +23,7 @@ public class TariffViewForm {
         this.title = tariff.getTitle();
         this.price = tariff.getPrice();
         this.deprecated = tariff.isDeprecated();
-//        this.options = tariff.getOptions();
+//        this.options = tariff.getOptionIdList();
 //        this.contracts=tariff.getContracts();
     }
 }
