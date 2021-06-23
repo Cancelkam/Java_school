@@ -38,26 +38,12 @@
             <input th:value="${tariff.price}" type="text" name="price" class="form-control" placeholder="Price">
         </div><br>
         <input type="checkbox" th:checked="${tariff.deprecated}" name="deprecated">Deprecated<br>
-<!--        <div class="d-flex justify-content-start">-->
-
-<!--        <div>-->
-<!--            <p>Available Options:</p>-->
-<!--        <select name="available" multiple>-->
-<!--            <option th:each="option: ${options}" th:value="${option.idOption}" th:text="${option.name}"></option>-->
-<!--        </select>-->
-<!--        </div><br>-->
-        <div>
-        <p>Options:</p>
-        <select multiple>
-            <option th:each="option: ${options}" th:value="${option.idOption}" th:text="${option.name}" th:selected="${tariff.getOptionIdList().contains(option)}"></option>
-        </select>
+        <div><br>
+        <h5>Options:</h5>
+        <ul class="list-group">
+            <li class="list-group-item" th:each="option: ${options}" th:value="${option.idOption}" th:text="${option.name}" th:selected="${tariff.getOptionIdList().contains(option)}"></li>
+        </ul>
         </div> <br>
-<!--    </div><br>-->
-<!--        <div class="col">-->
-<!--            <select class="custom-select" name="select" multiple>-->
-<!--                <option th:each="contract: ${tariff.contracts}" th:value="${contract.idContract}" th:text="${contract.number}"></option>-->
-<!--            </select>-->
-<!--        </div>-->
         <button class="btn btn-outline-secondary me-2" type="submit";>
             Save
         </button>

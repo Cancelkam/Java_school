@@ -27,14 +27,12 @@
     <tr>
       <th scope="col">Title</th>
       <th scope="col">Price</th>
-      <th scope="col">Options</th>
     </tr>
     </thead>
     <tbody>
     <tr th:each="contract: ${contracts}">
       <td th:text="${contract.tariff_title}">N/A</td>
       <td th:text="${contract.tariff_price}"></td>
-      <td th:each="option: ${contract.options}" th:value="${option.idOption}" th:text="${option.name}">N/A</td>
     </tr>
     </tbody>
   </table>
