@@ -69,10 +69,6 @@ public class UserController {
     public String findContractByUserId(@PathVariable("id") int id, Model model) {
         List<Contract> contracts = userService.getContractByUserId(id);
         List<ContractViewForm> contractDto = contractService.getContractViewList(contracts);
-//        List<ContractViewForm> contractDto = new ArrayList<ContractViewForm>();
-//        for (Contract contract : contracts) {
-//            contractDto.add(new ContractViewForm(contract));
-//        }
         model.addAttribute("contracts", contractDto);
         return "client/yourContract";
 
@@ -84,6 +80,13 @@ public class UserController {
         List<ContractViewForm> contractDto = contractService.getContractViewList(contracts);
         model.addAttribute("contracts", contractDto);
         return "client/yourTariff";
+    }
+    @GetMapping(value = "/client/{id}/yourOptions")
+    public String findOptionsByContractId(@PathVariable("id") int id, Model model){
+        List<Contract> contracts = userService.getContractByUserId(id);
+        List<ContractViewForm> contractDto = contractService.getContractViewList(contracts);
+        model.addAttribute("contracts", contractDto);
+        return "client/yourOptions";
     }
 
     @GetMapping(value = "employee/editUser/{id}")

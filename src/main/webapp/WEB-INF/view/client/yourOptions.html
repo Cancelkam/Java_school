@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Options</title>
+  <link th:href="@{/resources/css/bootstrap.min.css}" rel="stylesheet">
+  <link th:href="@{/resources/css/index.css}" rel="stylesheet">
+</head>
+<body>
+<header class="p-3 bg-dark text-white">
+  <div class="container">
+    <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+      <div class="text-end">
+        <a href="/client/hello" class="btn btn-lg btn-outline-light me-2">Back</a>
+      </div>
+    </div>
+  </div>
+</header>
+<main>
+  <div class="pricing-header p-3 pb-md-4 mx-auto text-center">
+    <h1 class="display-4 fw-normal">Options</h1>
+    <p class="fs-5 text-muted">Your options are here:</p>
+  </div>
+  <table  class="table table-hover text-center border">
+    <thead class="table-secondary">
+    <tr>
+      <th scope="col">Title</th>
+      <th scope="col">Price</th>
+      <th scope="col">Connection Price</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="option: ${contract.options}">
+      <td th:text="${option.name}">N/A</td>
+      <td th:text="${option.cost}"></td>
+      <td th:text="${option.conn_cost}"></td>
+    </tr>
+    </tbody>
+  </table>
+</main>
+</body>
+</html>
