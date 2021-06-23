@@ -1,6 +1,7 @@
 package com.javaSchool.eCare.service.implementation;
 
 import com.javaSchool.eCare.dao.interfaces.ContractRepository;
+import com.javaSchool.eCare.model.dto.Tariff.TariffViewForm;
 import com.javaSchool.eCare.model.dto.contract.ContractViewForm;
 import com.javaSchool.eCare.model.entity.Contract;
 import com.javaSchool.eCare.model.entity.Tariff;
@@ -76,6 +77,18 @@ public class ContractServiceImpl implements ContractService {
             contractDto.add(new ContractViewForm(contract));
         }
         return contractDto;
+    }
+
+//    @Override
+    @Transactional
+    public void updateContract(ContractViewForm contract) {
+        Contract newContract = new Contract();
+        newContract.setIdContract(contract.getIdContract());
+        newContract.setNumber(contract.getNumber());
+//        newContract.setTariff(contract.get getIdTariff());
+
+        createEntity(newContract);
+//        tariffRepository.save(newTariff);
     }
 
 

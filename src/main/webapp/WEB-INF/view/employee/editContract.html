@@ -35,31 +35,33 @@
                        placeholder="User" readonly>
             </div>
             <br>
-            <div class="col d-inline-flex">
+            <div class="row justify-content-between col-4">
                 <p>Tariff</p>
-                <select class="form-select form-select-lg mb-3">
+                <select name="idTariff" class="border border-light">
                     <option th:each="tariff: ${tariffs}" th:value="${tariff.idTariff}"
-                            th:text="${tariff.title}"></option>
+                            th:text="${tariff.title}"
+                            th:selected="${tariff.equals(contract.tariff)}"
+                    ></option>
                 </select><br>
-                <button class="btn btn-sm btn-secondary" type="submit" ;>
+                <button class="btn btn-sm btn-light" type="submit" ;>
                     Apply
                 </button>
             </div>
             <br>
-            <div class="d-inline-flex">
+            <div class="row justify-content-between col-4">
                 <div class="col">
-                    <p>Connected Options</p>
-                    <ul>
-                        <li th:each="option: ${contract.options}" th:value="${option.idOption}"><a
+                    <h5>Connected Options</h5>
+                    <ul class="list-group">
+                        <li class="list-group-item" th:each="option: ${contract.options}" th:value="${option.idOption}"><a
                                 th:text="${option.name}"
                                 th:href="@{/employee/editContract/{idContract}/deleteOption/{idOption} (idContract = ${contract.idContract},idOption = ${option.idOption})}"/>
                         </li>
                     </ul>
                 </div>
                 <div class="col">
-                    <p>Add Option</p>
-                    <ul>
-                        <li th:each="option: ${options}" th:if="${!contract.options.contains(option)}"><a th:text="${option.name}"
+                    <h5>Add Option</h5>
+                    <ul class="list-group">
+                        <li class="list-group-item" th:each="option: ${options}" th:if="${!contract.options.contains(option)}"><a th:text="${option.name}"
                                                             th:href="@{/employee/editContract/{idContract}/addOption/{idOption} (idContract = ${contract.idContract},idOption = ${option.idOption})}"/>
                         </li>
                     </ul>

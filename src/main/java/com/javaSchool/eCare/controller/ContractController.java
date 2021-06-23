@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.Set;
 
@@ -55,8 +56,9 @@ public class ContractController {
         model.addAttribute("options", options);
         return "/employee/editContract";
     }
+
     @GetMapping(value = "employee/editContract/{idContract}/addOption/{idOption}")
-    public String addOptionToContract(@PathVariable("idContract") Integer idContract, @PathVariable("idOption") Integer idOption,  Model model){
+    public String addOptionToContract(@PathVariable("idContract") Integer idContract, @PathVariable("idOption") Integer idOption, Model model) {
         Contract contract = contractService.getEntityById(idContract);
         Option option = optionService.getEntityById(idOption);
         Set<Option> newOptionList = contract.getOptions();
@@ -66,8 +68,9 @@ public class ContractController {
 
         return "redirect:/employee/editContract/" + idContract.toString();
     }
+
     @GetMapping(value = "employee/editContract/{idContract}/deleteOption/{idOption}")
-    public String deleteOptionToContract(@PathVariable("idContract") Integer idContract, @PathVariable("idOption") Integer idOption,  Model model){
+    public String deleteOptionToContract(@PathVariable("idContract") Integer idContract, @PathVariable("idOption") Integer idOption, Model model) {
         Contract contract = contractService.getEntityById(idContract);
         Option option = optionService.getEntityById(idOption);
         Set<Option> newOptionList = contract.getOptions();
@@ -77,4 +80,13 @@ public class ContractController {
         return "redirect:/employee/editContract/" + idContract.toString();
     }
 
+    @PostMapping(value = "employee/editContract/{id}")
+    public String editContractsTariff(@PathVariable("id") int id, @ModelAttribute("contract") @Valid ContractViewForm contractViewForm) {
+        Contract contract = contractService.getEntityById(id);
+        Integer newIdTariff = contractViewForm.getIdTariff();
+        Tariff tariff = tariffService.getEntityById(newIdTariff);
+        contract.setTariff(tariff);
+        contractService.saveEntity(contract);
+        return "redirect:/employee/allContracts";
+    }
 }
