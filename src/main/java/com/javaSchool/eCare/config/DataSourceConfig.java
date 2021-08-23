@@ -82,7 +82,7 @@ public class DataSourceConfig {
         Properties properties = new Properties();
         properties.setProperty("hibernate.hbm2ddl.auto", env.getProperty("hibernate.hbm2ddl.auto"));
         properties.setProperty("hibernate.dialect", env.getProperty("hibernate.dialect"));
-//        properties.setProperty("hibernate.show_sql", env.getProperty("hibernate.show_sql"));
+       properties.setProperty("hibernate.show_sql", env.getProperty("hibernate.show_sql"));
         return properties;
     }
 

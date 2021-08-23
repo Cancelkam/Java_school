@@ -3,8 +3,8 @@ package com.javaSchool.eCare.service.implementation;
 
 import com.javaSchool.eCare.dao.interfaces.TariffRepository;
 import com.javaSchool.eCare.model.dto.Tariff.TariffViewForm;
-import com.javaSchool.eCare.model.entity.Option;
 import com.javaSchool.eCare.model.entity.Tariff;
+import com.javaSchool.eCare.service.api.MessageSender;
 import com.javaSchool.eCare.service.api.TariffService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,10 +18,12 @@ import java.util.List;
 public class TariffServiceImpl implements TariffService {
 
     private final TariffRepository tariffRepository;
+    private final MessageSender messageSender;
 
     @Autowired
-    public TariffServiceImpl(TariffRepository tariffRepository) {
+    public TariffServiceImpl(TariffRepository tariffRepository, MessageSender messageSender) {
         this.tariffRepository = tariffRepository;
+        this.messageSender = messageSender;
     }
 
 
@@ -29,6 +31,8 @@ public class TariffServiceImpl implements TariffService {
     @Transactional
     public void createEntity(Tariff entity) {
         tariffRepository.save(entity);
+        messageSender.sendMessage(entity.convertToJson());
+
     }
 
     @Override
@@ -38,6 +42,7 @@ public class TariffServiceImpl implements TariffService {
         newTariff.setTitle(tariff.getTitle());
         newTariff.setPrice(tariff.getPrice());
         createEntity(newTariff);
+        messageSender.sendMessage(newTariff.convertToJson());
     }
 
     @Override
@@ -49,19 +54,26 @@ public class TariffServiceImpl implements TariffService {
     @Override
     @Transactional
     public void updateEntity(Tariff entity) {
-    tariffRepository.update(entity);
+        tariffRepository.update(entity);
+        messageSender.sendMessage(entity.convertToJson());
     }
 
     @Override
     @Transactional
     public void deleteEntity(Tariff tariff) {
         tariffRepository.delete(tariff);
+        messageSender.sendMessage(tariff.convertToJson());
     }
 
     @Override
     @Transactional
     public List<Tariff> findAll() {
         return tariffRepository.findAll();
+    }
+
+    @Override
+    public void saveEntity(Tariff tariff) {
+
     }
 
     @Override
@@ -79,29 +91,29 @@ public class TariffServiceImpl implements TariffService {
         newTariff.setPrice(tariff.getPrice());
         newTariff.setDeprecated(tariff.isDeprecated());
         createEntity(newTariff);
-        tariffRepository.save(newTariff);
+//        tariffRepository.save(newTariff);
     }
 
-    @Override
-    @Transactional
-    public void addOption(Tariff tariff, Option option) {
-        tariff.addOption(option);
-        for (Option opt : option.getAssociatedOptions()) {
-            tariff.addOption(opt);
-        }
-        updateEntity(tariff);
-
-    }
-
-    @Override
-    @Transactional
-    public void deleteOption(Tariff tariff, Option option) {
-        tariff.getOptions().remove(option);
-        for (Option opt : option.getAssociatedOptions()) {
-            tariff.getOptions().remove(opt);
-        }
-        tariffRepository.update(tariff);
-    }
+//    @Override
+//    @Transactional
+//    public void addOption(Tariff tariff, Option option) {
+//        tariff.addOption(option);
+//        for (Option opt : option.getAssociatedOptions()) {
+//            tariff.addOption(opt);
+//        }
+//        updateEntity(tariff);
+//
+//    }
+//
+//    @Override
+//    @Transactional
+//    public void deleteOption(Tariff tariff, Option option) {
+//        tariff.getOptions().remove(option);
+//        for (Option opt : option.getAssociatedOptions()) {
+//            tariff.getOptions().remove(opt);
+//        }
+//        tariffRepository.update(tariff);
+//    }
 
     @Override
     @Transactional
@@ -109,5 +121,11 @@ public class TariffServiceImpl implements TariffService {
         Tariff tariff = getEntityById(id);
         tariff.setDeprecated(true);
         updateEntity(tariff);
+    }
+
+    @Override
+    @Transactional
+    public List<Tariff> getLimit(int limit) {
+        return tariffRepository.getLimit(limit);
     }
 }

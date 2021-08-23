@@ -1,6 +1,7 @@
 package com.javaSchool.eCare.controller;
 
 import com.javaSchool.eCare.model.dto.Tariff.TariffViewForm;
+import com.javaSchool.eCare.model.entity.Contract;
 import com.javaSchool.eCare.model.entity.Option;
 import com.javaSchool.eCare.model.entity.Tariff;
 import com.javaSchool.eCare.service.api.OptionService;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 @Controller
@@ -41,6 +43,11 @@ public class TariffsController {
         List<Tariff> tariffs = tariffService.findAll();
         List<TariffViewForm> tariffDto = new ArrayList<TariffViewForm>();
         for (Tariff tariff : tariffs) {
+//           Iterator it = tariff.getContracts().iterator();
+//            while (it.hasNext()) {
+//                Contract s = (Contract) it.next();
+//                System.out.println(s.getNumber());
+//            }
             tariffDto.add(new TariffViewForm(tariff));
         }
         model.addAttribute("tariffs", tariffDto);
@@ -78,12 +85,12 @@ public class TariffsController {
 //        tariffService.deleteEntity(TariffViewForm );
 //    }
 
-    @GetMapping(value = {"employee/editTariff/{id}"})
+    @GetMapping(value = "employee/editTariff/{id}")
     public String editTariff(@PathVariable("id") int id, Model model) {
         Tariff tariff = tariffService.getEntityById(id);
-//        List<Option> options = optionService.findAll();
+        List<Option> options = optionService.findAll();
         model.addAttribute("tariff", tariff);
-//        model.addAttribute("options", options);
+        model.addAttribute("options", options);
         return "/employee/editTariff";
     }
 

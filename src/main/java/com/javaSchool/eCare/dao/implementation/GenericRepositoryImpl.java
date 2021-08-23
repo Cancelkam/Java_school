@@ -5,9 +5,11 @@ import com.javaSchool.eCare.dao.interfaces.GenericRepository;
 import com.javaSchool.eCare.dao.interfaces.TariffRepository;
 import com.javaSchool.eCare.model.entity.Tariff;
 import org.hibernate.SessionFactory;
+import org.hibernate.query.Query;
 import org.hibernate.sql.Select;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.awt.*;
 import java.lang.reflect.ParameterizedType;
@@ -18,7 +20,7 @@ public class GenericRepositoryImpl<Entity, Integer> implements GenericRepository
 
     private final Class<Entity> entityClass;
 
-    private SessionFactory session;
+    SessionFactory session;
 
     @Autowired
     public void setSessionFactory(SessionFactory sessionFactory) {
@@ -47,6 +49,13 @@ public class GenericRepositoryImpl<Entity, Integer> implements GenericRepository
         session.getCurrentSession().delete(session.getCurrentSession().merge(entity));
     }
 
+    @Override
+    public List<Entity> getLimit(int limit) {
+       Query<Entity> query = session.getCurrentSession().createQuery("from " + entityClass.getName() + "c  order by c.id desc", entityClass);
+       query.setMaxResults(limit);
+       return query.list();
+    }
+
     //    @Override
 //    public Entity save(Entity entity) {
 //        session.getCurrentSession().persist(entity);
@@ -62,7 +71,7 @@ public class GenericRepositoryImpl<Entity, Integer> implements GenericRepository
 
     @Override
     public Entity read(Integer id) {
-        return session.getCurrentSession()
+        return this.session.getCurrentSession()
                 .find(entityClass, id);
     }
 }

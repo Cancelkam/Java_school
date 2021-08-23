@@ -1,5 +1,6 @@
 package com.javaSchool.eCare.model.dto.Tariff;
 
+import com.javaSchool.eCare.model.entity.Contract;
 import com.javaSchool.eCare.model.entity.Option;
 import com.javaSchool.eCare.model.entity.Tariff;
 import lombok.Data;
@@ -15,12 +16,14 @@ public class TariffViewForm {
     private double price;
     private boolean deprecated;
     private Set<Option> options;
+    private Set<Contract> contracts;
 
     public TariffViewForm(Tariff tariff) {
         this.idTariff = tariff.getIdTariff();
         this.title = tariff.getTitle();
         this.price = tariff.getPrice();
         this.deprecated = tariff.isDeprecated();
-//        this.options = tariff.getOptions();
+//        this.options = tariff.getOptionIdList();
+//        this.contracts=tariff.getContracts();
     }
 }

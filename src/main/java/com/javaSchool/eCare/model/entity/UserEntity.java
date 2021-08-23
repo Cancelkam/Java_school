@@ -11,6 +11,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import javax.persistence.*;
 import javax.validation.constraints.Size;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -31,7 +32,6 @@ public class UserEntity {
     private String surname;
 
     @Column(name = "name", nullable = false)
-    @Basic
     @Size(min = 1, max = 45)
     private String name;
 
@@ -55,7 +55,7 @@ public class UserEntity {
     private String email;
 
     @Column(name = "password")
-    @Size(min = 1, max = 45)
+    @Size(min = 1, max = 145)
     private String password;
 
     @Column(name = "role")
@@ -68,6 +68,6 @@ public class UserEntity {
     private Status status;
 
 
-    @OneToMany(mappedBy = "userEntity", cascade = CascadeType.ALL)
-    private Set<Contract> contract;
+    @OneToMany(mappedBy = "userEntity")
+    private Set<Contract> contract = new HashSet<Contract>();
 }

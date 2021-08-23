@@ -2,9 +2,9 @@ package com.javaSchool.eCare.dao.implementation;
 
 
 import com.javaSchool.eCare.dao.interfaces.UserRepository;
+import com.javaSchool.eCare.model.entity.Contract;
 import com.javaSchool.eCare.model.entity.UserEntity;
 import org.hibernate.SessionFactory;
-import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -13,17 +13,17 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public class UserRepositoryImpl implements UserRepository {
+public class UserRepositoryImpl extends GenericRepositoryImpl<UserEntity,Integer> implements UserRepository {
 
-    private SessionFactory sessionFactory;
+//    private SessionFactory session;
 
-    @Autowired
-    public void setSessionFactory(SessionFactory sessionFactory) {
-        this.sessionFactory = sessionFactory;
-    }
-
+//    @Autowired
+//    public void setSessionFactory(SessionFactory sessionFactory) {
+//        this.session = sessionFactory;
+//    }
+    @Override
     public UserEntity findByEmail(String email) {
-        return (UserEntity) sessionFactory.getCurrentSession()
+        return (UserEntity) session.getCurrentSession()
                 .createQuery("FROM UserEntity AS u WHERE u.email = :email")
                 .setParameter("email", email).uniqueResult();
 
@@ -31,7 +31,7 @@ public class UserRepositoryImpl implements UserRepository {
 
     @Override
     public UserEntity getUserByNumber(String contractNumber) {
-        return (UserEntity) sessionFactory.getCurrentSession()
+        return (UserEntity) session.getCurrentSession()
                 .createQuery("SELECT c.userEntity FROM Contract c WHERE c.number=:number")
                 .setParameter("number", contractNumber).uniqueResult();
 
@@ -39,18 +39,18 @@ public class UserRepositoryImpl implements UserRepository {
 
     @Override
     public List<UserEntity> findAll() {
-        return sessionFactory.getCurrentSession()
+        return session.getCurrentSession()
                 .createQuery("FROM UserEntity").list();
     }
 
     @Override
     public void add(UserEntity user) {
-        sessionFactory.getCurrentSession().save(user);
+        session.getCurrentSession().save(user);
     }
 
     @Override
     public void update(UserEntity user) {
-        sessionFactory.getCurrentSession().merge(user);
+        session.getCurrentSession().merge(user);
     }
 
 //    public List<UserEntity> getRole(String email) {
@@ -64,7 +64,13 @@ public class UserRepositoryImpl implements UserRepository {
 
     @Override
     public String getRole() {
-        return String.valueOf(sessionFactory.getCurrentSession()
+        return String.valueOf(session.getCurrentSession()
                 .createQuery("SELECT role FROM UserEntity"));
+    }
+    @Override
+    public List<Contract> getContractByUserId(Integer id){
+        return session.getCurrentSession()
+                .createQuery("from Contract as c where c.userEntity.idUser=:id")
+                .setParameter("id", id).getResultList();
     }
 }

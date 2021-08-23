@@ -14,4 +14,6 @@ public interface GenericService<Entity,Integer> {
 
     public List<Entity> findAll();
 
+    public void saveEntity(Entity entity);
+
 }

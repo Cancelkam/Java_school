@@ -7,16 +7,16 @@
     <link th:href="@{/resources/css/index.css}" rel="stylesheet">
 </head>
 <body>
-<header>
+<header class="p-3 bg-dark text-white">
     <div class="container">
-        <div class="align-items-center justify-content-center justify-content-lg-start">
-            <a href="/" class="align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
+        <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+            <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
                 <svg class="bi me-2" width="40" height="32">
                     <use xlink:href="#bootstrap"/>
                 </svg>
             </a>
             <div class="text-end">
-                <a href="/employee/hello" class="btn btn-outline-light me-2">Back</a>
+                <a href="/employee/tariffs" class="btn btn-outline-light me-2">Back</a>
             </div>
         </div>
     </div>
@@ -30,18 +30,21 @@
 <form th:action="@{/employee/editTariff/{id} (id = ${id} ) }"  th:object="${tariff}" method="post" >
     <div class="g-3">
         <div class="col">
-            <input th:value="${tariff.title}" type="text" name="title" class="form-control" placeholder="Title" aria-label="First name">
+            <label class="form-label">Title</label>
+           <input th:value="${tariff.title}" type="text" name="title" class="form-control" placeholder="Title">
         </div><br>
         <div class="col">
-            <input th:value="${tariff.price}" type="text" name="price" class="form-control" placeholder="Price" aria-label="Last name">
+            <label class="form-label">Price</label>
+            <input th:value="${tariff.price}" type="text" name="price" class="form-control" placeholder="Price">
         </div><br>
         <input type="checkbox" th:checked="${tariff.deprecated}" name="deprecated">Deprecated<br>
-        <div class="col">
-        <select class="custom-select" name="select" multiple>
-            <option th:each="option: ${options}" th:value="${option.title}" th:name="${option.idOption}"></option>
-        </select>
-        </div>
-        <button class="w-50 btn btn-primary btn-lg" type="submit" style="margin-left: auto; margin-right: auto">
+        <div><br>
+        <h5>Options:</h5>
+        <ul class="list-group">
+            <li class="list-group-item" th:each="option: ${options}" th:value="${option.idOption}" th:text="${option.name}" th:selected="${tariff.getOptionIdList().contains(option)}"></li>
+        </ul>
+        </div> <br>
+        <button class="btn btn-outline-secondary me-2" type="submit";>
             Save
         </button>
     </div>

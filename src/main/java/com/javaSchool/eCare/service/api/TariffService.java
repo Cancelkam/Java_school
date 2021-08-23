@@ -17,9 +17,9 @@ public interface TariffService extends GenericService<Tariff, Integer>{
 
     public void updateTariff(TariffViewForm tariff);
 
-    public void addOption(Tariff tariff, Option option);
-
-    public void deleteOption(Tariff tariff, Option option);
+//    public void addOption(Tariff tariff, Option option);
+//
+//    public void deleteOption(Tariff tariff, Option option);
 
 
 //    public void deleteDeprecatedTariffs();
@@ -27,6 +27,8 @@ public interface TariffService extends GenericService<Tariff, Integer>{
 //    public List<Tariff> deprecatedTariffs();
 //
     void makeTariffDeprecated(int id);
+
+    List<Tariff> getLimit(int limit);
 
 
 }

@@ -5,74 +5,56 @@
     <link th:href="@{/resources/css/bootstrap.min.css}" rel="stylesheet">
     <link th:href="@{/resources/css/index.css}" rel="stylesheet">
     <script th:src="@{https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js}"></script>
-    <style>
-        .bd-placeholder-img {
-            font-size: 1.125rem;
-            text-anchor: middle;
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            user-select: none;
-        }
-
-        @media (min-width: 768px) {
-            .bd-placeholder-img-lg {
-                font-size: 3.5rem;
-            }
-        }
-    </style>
-
 </head>
 <body>
 
 <header class="p-3 bg-dark text-white">
     <div class="container">
         <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-            <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
-                <svg class="bi me-2" width="40" height="32">
-                    <use xlink:href="#bootstrap"/>
-                </svg>
-            </a>
             <div class="text-end">
-                <a href="/employee/hello" class="btn btn-outline-light me-2">Back</a>
+                <a href="/employee/hello" class="btn btn-lg btn-outline-light me-2">Back</a>
             </div>
         </div>
     </div>
-
 </header>
-
 <main>
     <div class="pricing-header p-3 pb-md-4 mx-auto text-center">
         <h1 class="display-4 fw-normal">Contracts</h1>
-        <p class="fs-5 text-muted">All clients contracts are here:</p>
+        <p class="fs-5 text-muted">All client's contracts are here:</p>
     </div>
     <form th:action="@{/employee/search/result}" method="get">
-        <input class="form-control" name="number" type="text" id="search" placeholder="Search..."/>
-        <input type="submit" value="search"/>
+        <input class="form-control-lg border border-dark border-3" name="number" type="text" id="search"
+               placeholder="Search..."/>
+        <input class="btn-lg btn-warning" type="submit" value="search"/>
     </form>
+    <br>
 
 
-<!--    <form th:action="@{/allContracts}" th:object="${contracts}" method="post">-->
+    <!--    <form th:action="@{/allContracts}" th:object="${contracts}" method="post">-->
 
-        <table class="table table-hover">
-            <thead>
-            <tr>
-                <th scope="col">Number</th>
-                <th scope="col">Tariff</th>
-                <th scope="col">User</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr th:each="contract: ${contracts}">
-                <td th:text="${contract.number}">N/A</td>
-                <td th:text="${contract.tariff_id}">N/A</td>
-                <td th:text="${contract.user_id}">N/A</td>
-            </tr>
-            </tbody>
-        </table>
-        <a href="/employee/addContract" class="w-50 btn btn-primary btn-lg" type="submit" style="margin-left: auto; margin-right: auto">
-            Add Contract
-        </a>
-<!--    </form>-->
+    <table class="table table-hover text-center border">
+        <thead class="table-secondary">
+        <tr>
+            <th scope="col">Contract Number</th>
+            <th scope="col">User</th>
+            <th scope="col">Tariff</th>
+            <th scope="col"></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="contract: ${contracts}">
+            <td th:text="${contract.number}">N/A</td>
+            <td th:text="${contract.user_email}">N/A</td>
+            <td th:text="${contract.tariff_title}">N/A</td>
+            <td><a class="btn btn-light" role="button"
+                   th:href="@{/employee/editContract/{id} (id=${contract.idContract})}">Edit</a></td>
+        </tr>
+        </tbody>
+    </table>
+    <!--        <a href="/employee/addContract" class="w-50 btn btn-primary btn-lg" type="submit" style="margin-left: auto; margin-right: auto">-->
+    <!--            Add Contract-->
+    <!--        </a>-->
+    <!--    </form>-->
 </main>
 <script th:src="@{../resources/js/search.js}"></script>
 

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Contract</title>
+  <link th:href="@{/resources/css/bootstrap.min.css}" rel="stylesheet">
+  <link th:href="@{/resources/css/index.css}" rel="stylesheet">
+</head>
+<body>
+<header class="p-3 bg-dark text-white">
+  <div class="container">
+    <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+      <div class="text-end">
+        <a href="/client/hello" class="btn btn-lg btn-outline-light me-2">Back</a>
+      </div>
+    </div>
+  </div>
+
+</header>
+
+<main>
+  <div class="pricing-header p-3 pb-md-4 mx-auto text-center">
+    <h1 class="display-4 fw-normal">Contracts</h1>
+    <p class="fs-5 text-muted">Your contracts are here:</p>
+  </div>
+  <table  class="table table-hover text-center border">
+    <thead class="table-secondary">
+    <tr>
+      <th scope="col">Number</th>
+      <th scope="col">Tariff</th>
+      <th scope="col">Blocked</th>
+      <th scope="col">Blocked_by_admin</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="contract: ${contracts}">
+      <td th:text="${contract.number}">N/A</td>
+      <td th:text="${contract.tariff_title}">N/A</td>
+      <td th:text="${contract.isBlocked() } ? 'yes' : 'no'"></td>
+      <td th:text="${contract.isBlocked_by_admin() } ? 'yes' : 'no'">ff</td>
+    </tr>
+
+    <input type="checkbox" th:checked="${contract.blocked}" name="blocked">Blocked<br>
+    </tbody>
+  </table>
+</main>
+</body>
+</html>

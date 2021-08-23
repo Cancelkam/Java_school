@@ -12,4 +12,6 @@ public interface GenericRepository<Entity,Integer> {
     public void update(Entity entity);
 
     public void delete(Entity entity);
+
+    public List<Entity> getLimit(int limit);
 }
